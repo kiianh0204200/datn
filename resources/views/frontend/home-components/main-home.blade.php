@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-4 mb-md-3 mb-lg-0">
                     <div class="banner-features wow fadeIn animated hover-up">
-                        <img src="{{ asset('frontend/assets/imgs/theme/icons/feature-1.png') }}" alt="">
+                        <img src="{{ asset('public/frontend/assets/imgs/theme/icons/feature-1.png') }}" alt="">
                         <h4 class="bg-1"> {{ __('frontend.Free Shipping') }}</h4>
                     </div>
                 </div>
@@ -75,20 +75,20 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one"
-                            type="button" role="tab" aria-controls="tab-one"
-                            aria-selected="true">{{ __('frontend.New') }}
+                                type="button" role="tab" aria-controls="tab-one"
+                                aria-selected="true">{{ __('frontend.New') }}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="nav-tab-two" data-bs-toggle="tab" data-bs-target="#tab-two"
-                            type="button" role="tab" aria-controls="tab-two"
-                            aria-selected="false">{{ __('frontend.Hot') }}
+                                type="button" role="tab" aria-controls="tab-two"
+                                aria-selected="false">{{ __('frontend.Hot') }}
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="nav-tab-three" data-bs-toggle="tab" data-bs-target="#tab-three"
-                            type="button" role="tab" aria-controls="tab-three"
-                            aria-selected="false">{{ __('frontend.Best Sale') }}
+                                type="button" role="tab" aria-controls="tab-three"
+                                aria-selected="false">{{ __('frontend.Best Sale') }}
                         </button>
                     </li>
                 </ul>
@@ -106,12 +106,12 @@
                                         <div class="product-img product-img-zoom">
                                             <a href="{{ route('product.detail', $product->id) }}">
                                                 <img class="default-img" src="{{ $product->thumbnail_url }}"
-                                                    alt="">
+                                                     alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
                                             <a aria-label="View" class="action-btn hover-up"
-                                                href="{{ route('product.detail', $product->id) }}"><i
+                                               href="{{ route('product.detail', $product->id) }}"><i
                                                     class="fi-rs-search"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
@@ -143,7 +143,7 @@
                     </div>
                     <!--End product-grid-4-->
                 </div>
-            <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
+                <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
                     <div class="row product-grid-4">
                         @foreach ($productHot as $product)
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
@@ -152,12 +152,12 @@
                                         <div class="product-img product-img-zoom">
                                             <a href="{{ route('product.detail', $product->id) }}">
                                                 <img class="default-img" src="{{ $product->thumbnail_url }}"
-                                                    alt="">
+                                                     alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
                                             <a aria-label="View" class="action-btn hover-up"
-                                                href="{{ route('product.detail', $product->id) }}"><i
+                                               href="{{ route('product.detail', $product->id) }}"><i
                                                     class="fi-rs-search"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
@@ -189,7 +189,7 @@
                     </div>
                     <!--End product-grid-4-->
                 </div>
-            <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
+                <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
                     <div class="row product-grid-4">
                         @foreach ($productBestSeller as $product)
                             <div class="col-lg-3 col-md-4 col-12 col-sm-6">
@@ -198,12 +198,12 @@
                                         <div class="product-img product-img-zoom">
                                             <a href="{{ route('product.detail', $product->id) }}">
                                                 <img class="default-img" src="{{ $product->thumbnail_url }}"
-                                                    alt="">
+                                                     alt="">
                                             </a>
                                         </div>
                                         <div class="product-action-1">
                                             <a aria-label="View" class="action-btn hover-up"
-                                                href="{{ route('product.detail', $product->id) }}"><i
+                                               href="{{ route('product.detail', $product->id) }}"><i
                                                     class="fi-rs-search"></i></a>
                                         </div>
                                         <div class="product-badges product-badges-position product-badges-mrg">
@@ -250,7 +250,7 @@
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
                                 <a href="{{ route('shop') }}"><img src="{{ $category->image_url }}"
-                                        alt=""></a>
+                                                                   alt=""></a>
                             </figure>
                             <h5><a href="{{ route('shop') }}">{{ $category->name }}</a></h5>
                         </div>
@@ -314,7 +314,7 @@
                                 </div>
                                 <div class="product-action-1">
                                     <a aria-label="View" class="action-btn small hover-up"
-                                        href="{{ route('product.detail', $product->id) }}" tabindex="0"><i
+                                       href="{{ route('product.detail', $product->id) }}" tabindex="0"><i
                                             class="fi-rs-search"></i></a>
                                 </div>
                                 <div class="product-badges product-badges-position product-badges-mrg">
@@ -359,31 +359,31 @@
                 <div class="carausel-6-columns text-center" id="carausel-6-columns-3">
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-1.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-2.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-3.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-4.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-5.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-6.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                     <div class="brand-logo">
                         <img class="img-grey-hover" src="{{ asset('frontend/assets/imgs/banner/brand-3.png') }}"
-                            alt="">
+                             alt="">
                     </div>
                 </div>
             </div>
@@ -396,35 +396,35 @@
                     <h3 class="section-title mb-20"><span>{{ __('frontend.From the Blog') }}</span></h3>
                     <div class="post-list mb-4 mb-lg-0">
                         @foreach ($blogs as $blog)
-                        @if ($loop->index < 2)
-                            <article class="wow fadeIn animated">
-                                <div class="d-md-flex d-block">
-                                    <div class="post-thumb d-flex mr-15">
-                                        <a class="color-white" href="{{ route('blog.detail', $blog->id) }}">
-                                            <img src="{{ $blog->thumbnail_url }}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <div class="entry-meta mb-10 mt-10">
-                                            <a class="entry-meta meta-2"
-                                                href="{{ route('blog.detail', $blog->id) }}"><span
-                                                    class="post-in font-x-small">{{ $blog->postCategory->name }}</span></a>
+                            @if ($loop->index < 2)
+                                <article class="wow fadeIn animated">
+                                    <div class="d-md-flex d-block">
+                                        <div class="post-thumb d-flex mr-15">
+                                            <a class="color-white" href="{{ route('blog.detail', $blog->id) }}">
+                                                <img src="{{ $blog->thumbnail_url }}" alt="">
+                                            </a>
                                         </div>
-                                        <h4 class="post-title mb-25 text-limit-2-row">
-                                            <a
-                                                href="{{ route('blog.detail', $blog->id) }}">{!! $blog->excerpt !!}</a>
-                                        </h4>
-                                        <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                                            <div>
+                                        <div class="post-content">
+                                            <div class="entry-meta mb-10 mt-10">
+                                                <a class="entry-meta meta-2"
+                                                   href="{{ route('blog.detail', $blog->id) }}"><span
+                                                        class="post-in font-x-small">{{ $blog->postCategory->name }}</span></a>
+                                            </div>
+                                            <h4 class="post-title mb-25 text-limit-2-row">
+                                                <a
+                                                    href="{{ route('blog.detail', $blog->id) }}">{!! $blog->excerpt !!}</a>
+                                            </h4>
+                                            <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
+                                                <div>
                                                 <span
                                                     class="post-on">{{ $blog->created_at->format('d/m/y H:i') }}</span>
+                                                </div>
+                                                <a
+                                                    href="{{ route('blog.detail', $blog->id) }}">{{ __('frontend.Read More') }}</a>
                                             </div>
-                                            <a
-                                                href="{{ route('blog.detail', $blog->id) }}">{{ __('frontend.Read More') }}</a>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
+                                </article>
                             @endif
                         @endforeach
                     </div>
@@ -472,7 +472,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="banner-bg wow fadeIn animated"
-                        style="background-image: url('{{ asset('frontend/assets/imgs/banner/banner-8.jpg') }}')">
+                         style="background-image: url('{{ asset('frontend/assets/imgs/banner/banner-8.jpg') }}')">
                         <div class="banner-content">
                             <h5 class="text-grey-4 mb-15">{{ __('frontend.Shop Today’s Deals') }}</h5>
                             <h2 class="fw-600">{{ __('frontend.Happy Mother is Day Big Sale Up to 40%') }}</h2>
