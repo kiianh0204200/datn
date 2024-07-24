@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Mail\OrderShipped;
 use App\Models\Order;
 use App\Models\OrderDetail;
-use App\Models\Product;
+use App\Models\ProductOption;
 use App\Models\ProductOptionValue;
-use App\Models\User;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +28,14 @@ class CheckoutController extends Controller
         DB::beginTransaction();
         try {
             $subtotal = \Cart::subTotal();
+            $user = auth()->user();
+            $user->update([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'address_2' => $request->address_2 ?? null,
+            ]);
+
             $order = Order::create([
                 'user_id' => auth()->user()->id,
                 'order_id' => uniqid('Order-'),
@@ -95,7 +102,6 @@ class CheckoutController extends Controller
         $vnp_Locale = 'vn';
         $vnp_IpAddr = "1.55.197.187";
         $startTime = date("YmdHis");
-        $expire = date('YmdHis',strtotime('+15 minutes',strtotime($startTime)));
 
         $inputData = [
             "vnp_Version" => "2.1.0",
@@ -110,7 +116,6 @@ class CheckoutController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => $vnpReturnUrl,
             "vnp_TxnRef" => $vnpTxnRef,
-            "vnp_ExpireDate" => $expire,
         ];
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
@@ -189,10 +194,43 @@ class CheckoutController extends Controller
                                     'payment_id' => $vnpTranId,
                                     'order_status' => 'confirmed',
                                 ]);
-                            }
 
-                            $returnData['RspCode'] = '00';
-                            $returnData['Message'] = 'Confirm Success';
+                                $order = Order::where('order_id', $orderId)->first();
+                                $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+                                // If Payment success
+                                // Update quantity product
+                                foreach ($orderDetails as $orderDetail) {
+                                    $color = ProductOption::where('name', $orderDetail->color)->first();
+                                    $size = ProductOption::where('name', $orderDetail->size)->first();
+                                    ProductOptionValue::query()
+                                        ->where('product_id', $orderDetail->product_id)
+                                        ->where('color_id', $color->id)
+                                        ->where('size_id', $size->id)
+                                        ->decrement('in_stock', $orderDetail->quantity);
+                                }
+
+                                Mail::to(auth()->user()->email)->send(new OrderShipped($order));
+
+                                Cart::destroy();
+
+                                return redirect()->route('frontend.home')->with('success', 'Đơn hàng đã được thanh toán thành công');
+                            } elseif ($inputData['vnp_ResponseCode'] == 11) {
+                                $order->update([
+                                    'payment_status' => 'failed',
+                                    'payment_id' => $vnpTranId,
+                                    'order_status' => 'pending',
+                                ]);
+
+                                return redirect()->route('frontend.home')->with('error', 'Giao dịch không thành công');
+                            } elseif ($inputData['vnp_ResponseCode'] == '24') {
+                                $order->update([
+                                    'payment_status' => 'failed',
+                                    'payment_id' => $vnpTranId,
+                                    'order_status' => 'pending',
+                                ]);
+
+                                return redirect()->route('frontend.home')->with('error', 'Giao dịch không thành công');
+                            }
                         } else {
                             $returnData['RspCode'] = '02';
                             $returnData['Message'] = 'Order already confirmed';
@@ -218,24 +256,5 @@ class CheckoutController extends Controller
             $returnData['Message'] = 'Unknow error';
             return redirect()->route('frontend.home')->with('error', 'Đơn hàng không thanh toán thành công');
         }
-
-        $order = Order::where('order_id', $orderId)->first();
-        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
-        // If Payment success
-        // Update quantity product
-        foreach ($orderDetails as $orderDetail) {
-            ProductOptionValue::query()
-                ->where('product_id', $orderDetail->product_id)
-                ->where('color', $orderDetail->color)
-                ->where('size', $orderDetail->size)
-                ->decrement('quantity', $orderDetail->quantity);
-        }
-
-        Mail::to(auth()->user()->email)->send(new OrderShipped($order));
-
-        Cart::destroy();
-
-        return redirect()->route('frontend.home')->with('success', 'Đơn hàng đã được thanh toán thành công');
-
     }
 }

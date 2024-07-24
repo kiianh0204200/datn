@@ -442,11 +442,16 @@
                     },
                     data: {product_id: productId, size: sizeId, color: colorId, quantity: quantity},
                     success: function (response) {
-                        location.reload();
                         toastr.success(response.message);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 5000);
                     },
                     error: function (response) {
                         toastr.error(response.responseJSON.message);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 5000);
                     }
                 });
             });

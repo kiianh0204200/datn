@@ -13,7 +13,7 @@ class AccountController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->paginate(10);
+        $orders = Order::where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
         return view('frontend.pages.account', compact('orders'));
     }
 
