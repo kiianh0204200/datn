@@ -23,7 +23,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab"
                                                href="#dashboard" role="tab" aria-controls="dashboard"
-                                               aria-selected="false"><i class="fi-rs-settings-sliders mr-10"></i>{{ __('frontend.Dashboard') }}</a>
+                                               aria-selected="false"><i
+                                                    class="fi-rs-settings-sliders mr-10"></i>{{ __('frontend.Dashboard') }}
+                                            </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders"
@@ -38,7 +40,14 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab"
                                                href="#account-detail" role="tab" aria-controls="account-detail"
-                                               aria-selected="true"><i class="fi-rs-user mr-10"></i>{{ __('frontend.Account details') }}</a>
+                                               aria-selected="true"><i
+                                                    class="fi-rs-user mr-10"></i>{{ __('frontend.Account details') }}
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab"
+                                               href="#account-detail-password" role="tab" aria-controls="account-detail"
+                                               aria-selected="true"><i class="fi-rs-user mr-10"></i>Đổi mật khẩu</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('frontend.logout')}}"><i
@@ -53,40 +62,11 @@
                                          aria-labelledby="dashboard-tab">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="mb-0">{{ __('frontend.Hello') }} {{auth()->user()->name}}! </h5>
+                                                <h5 class="mb-0">{{ __('frontend.Hello') }} {{auth()->user()->name}}
+                                                    ! </h5>
                                             </div>
                                             <div class="card-body">
                                                 <p>{{ __('frontend.From your account dashboard.you can easily check view your recent orders, manage your shipping and billing addresses and edit your password and account details.') }}</p>
-                                                <br>
-                                                <h5>{{ __('frontend.Member') }} :
-                                                    @if(floatval(auth()->user()->total_buy) > floatval(200000000))
-                                                        {{ __('frontend.Diamond') }}
-                                                    @elseif(floatval(auth()->user()->total_buy) > floatval(10000000))
-                                                        {{ __('frontend.Silver') }}
-                                                    @elseif(floatval(auth()->user()->total_buy) > floatval(1000000))
-                                                        {{ __('frontend.Gold') }}
-                                                    @else
-                                                        {{ __('frontend.No rank') }}
-                                                    @endif
-                                                </h5>
-                                                <br>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" style="width:
-                                                    @if(floatval(auth()->user()->total_buy) > floatval(200000000))
-                                                        100%
-                                                    @elseif(floatval(auth()->user()->total_buy) > floatval(10000000))
-                                                        80%
-                                                    @elseif(floatval(auth()->user()->total_buy) > floatval(1000000))
-                                                        50%
-                                                    @elseif(floatval(auth()->user()->total_buy) > floatval(100000))
-                                                        20%
-                                                    @else
-                                                        0%
-                                                    @endif
-                                                    %" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                        {{formatPrice(auth()->user()->total_buy)}} đ
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +107,8 @@
                                                                 @endif
                                                                 <td>{{formatPrice($order->total)}} đ</td>
                                                                 <td>
-                                                                    <a href="{{route('frontend.user.order-detail', $order->id)}}" class="btn-small d-block">{{ __('frontend.View') }}</a>
+                                                                    <a href="{{route('frontend.user.order-detail', $order->id)}}"
+                                                                       class="btn-small d-block">{{ __('frontend.View') }}</a>
                                                                     @if($order->order_status == 'cancelled')
                                                                         <a></a>
                                                                     @else
@@ -174,13 +155,16 @@
                                                 <h5>{{ __('frontend.Account details') }}</h5>
                                             </div>
                                             <div class="card-body">
-                                                <form method="post" action="{{route('frontend.user.update', auth()->user()->id)}}">
+                                                <form method="post"
+                                                      action="{{route('frontend.user.update', auth()->user()->id)}}">
                                                     @csrf
                                                     @method('PATCH')
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
-                                                            <label>{{ __('frontend.Name') }} <span class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('name') is-invalid @enderror"
+                                                            <label>{{ __('frontend.Name') }} <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   class="form-control square @error('name') is-invalid @enderror"
                                                                    value="{{old('name') ?? auth()->user()->name}}"
                                                                    name="name">
                                                             @error('name')
@@ -190,8 +174,11 @@
                                                             @enderror
                                                         </div>
                                                         <div class="form-group col-md-6">
-                                                            <label>{{ __('frontend.Email Address') }} <span class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('email') is-invalid @enderror" name="email"
+                                                            <label>{{ __('frontend.Email Address') }} <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   class="form-control square @error('email') is-invalid @enderror"
+                                                                   name="email"
                                                                    value="{{old('email') ?? auth()->user()->email}}"
                                                                    type="email">
                                                             @error('email')
@@ -201,8 +188,11 @@
                                                             @enderror
                                                         </div>
                                                         <div class="form-group col-md-12">
-                                                            <label>{{ __('frontend.Phone') }} <span class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('phone') is-invalid @enderror" name="phone"
+                                                            <label>{{ __('frontend.Phone') }} <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   class="form-control square @error('phone') is-invalid @enderror"
+                                                                   name="phone"
                                                                    value="{{old('phone') ?? auth()->user()->phone}}"
                                                                    type="text">
                                                             @error('phone')
@@ -212,41 +202,11 @@
                                                             @enderror
                                                         </div>
                                                         <div class="form-group col-md-12">
-                                                            <label>{{ __('frontend.Current Password') }} <span
+                                                            <label>{{ __('frontend.Address') }} <span
                                                                     class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('password') is-invalid @enderror"
-                                                                   name="password" type="password">
-                                                            @error('password')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{$message}}</strong>
-                                                            </span>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>{{ __('frontend.New Password') }} <span class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('new_password') is-invalid @enderror"
-                                                                   name="new_password" type="password">
-                                                            @error('new_password')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{$message}}</strong>
-                                                            </span>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>{{ __('frontend.Confirm Password') }} <span
-                                                                    class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('new_password_confirmation') is-invalid @enderror"
-                                                                   name="new_password_confirmation" type="password">
-                                                            @error('new_password_confirmation')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{$message}}</strong>
-                                                            </span>
-                                                            @enderror
-                                                        </div>
-                                                        <div class="form-group col-md-12">
-                                                            <label>{{ __('frontend.Address') }} <span class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('address') is-invalid @enderror"
-                                                                     value="{{old('address') ?? auth()->user()->address}}"
+                                                            <input required=""
+                                                                   class="form-control square @error('address') is-invalid @enderror"
+                                                                   value="{{old('address') ?? auth()->user()->address}}"
                                                                    name="address" type="text">
                                                             @error('address')
                                                             <span class="invalid-feedback" role="alert">
@@ -255,8 +215,10 @@
                                                             @enderror
                                                         </div>
                                                         <div class="form-group col-md-12">
-                                                            <label>{{ __('frontend.Address') }} 2 <span class="required">*</span></label>
-                                                            <input required="" class="form-control square @error('address_2') is-invalid @enderror"
+                                                            <label>{{ __('frontend.Address') }} 2 <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   class="form-control square @error('address_2') is-invalid @enderror"
                                                                    value="{{old('address_2') ?? auth()->user()->address_2}}"
                                                                    name="address_2" type="text">
                                                             @error('address_2')
@@ -267,7 +229,67 @@
                                                         </div>
                                                         <div class="col-md-12">
                                                             <button type="submit" class="btn btn-fill-out submit"
-                                                                    name="submit" value="Submit">{{ __('frontend.Save') }}
+                                                                    name="submit"
+                                                                    value="Submit">{{ __('frontend.Save') }}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="account-detail-password" role="tabpanel"
+                                         aria-labelledby="account-detail-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>{{ __('frontend.Account details') }}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <form id="form-change-password">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            <label>{{ __('frontend.Current Password') }} <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   id="password"
+                                                                   class="form-control square @error('password') is-invalid @enderror"
+                                                                   name="password" type="password">
+                                                            @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{$message}}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>{{ __('frontend.New Password') }} <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   id="new-password"
+                                                                   class="form-control square @error('new_password') is-invalid @enderror"
+                                                                   name="new_password" type="password">
+                                                            @error('new_password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{$message}}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>{{ __('frontend.Confirm Password') }} <span
+                                                                    class="required">*</span></label>
+                                                            <input required=""
+                                                                   id="new-password-confirm"
+                                                                   class="form-control square @error('new_password_confirmation') is-invalid @enderror"
+                                                                   name="new_password_confirmation" type="password">
+                                                            @error('new_password_confirmation')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{$message}}</strong>
+                                                            </span>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-fill-out submit"
+                                                                    name="submit"
+                                                                    value="Submit">{{ __('frontend.Save') }}
                                                             </button>
                                                         </div>
                                                     </div>
@@ -283,4 +305,45 @@
             </div>
         </section>
     </main>
+    @push('scripts')
+        <script>
+            $('#form-change-password').on('submit', function (e) {
+                e.preventDefault();
+                let url = "{{route('frontend.user.change-password')}}";
+                var password = $('#password').val();
+                var new_password = $('#new-password').val();
+                var new_password_confirm = $('#new-password-confirm').val();
+                if (new_password !== new_password_confirm) {
+                    toastr.error('Mật khẩu mới không khớp');
+                }
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Xác thực token để tránh bị lỗi 419
+                    },
+                    data: {
+                        password: password,
+                        new_password: new_password,
+                        new_password_confirmation: new_password_confirm
+                    },
+                    success: function (response) {
+                        console.log(response)
+                        toastr.success(response.message);
+                        setTimeout(function () {
+                            window.location.href = "{{route('frontend.logout')}}";
+                        }, 5000);
+                    },
+                    error: function (response) {
+                        console.log(response)
+                        toastr.error(response.responseJSON.message);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 5000);
+                    }
+                })
+            });
+        </script>
+    @endpush
 @endsection
