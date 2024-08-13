@@ -211,6 +211,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
     Route::prefix('/my-account')->group(function () {
+        Route::post('/change-password', [AccountController::class, 'changePassword'])->name('frontend.user.change-password');
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
