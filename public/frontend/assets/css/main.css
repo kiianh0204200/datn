@@ -5403,8 +5403,8 @@ h6.post-title {
   margin-right: 123px;
 }
 
-.logo.logo-width-1 a {
-  width: 400px;
+.logo.logo-width-1 a img {
+  width: 120px;
   min-width: 120px;
 }
 

@@ -156,8 +156,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('admin.order.index')->middleware(['permission:read order management']);
             Route::get('/show/{id}', [OrderController::class, 'show'])->name('admin.order.show')->middleware(['permission:read order management']);
-            Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit')->middleware(['permission:update order management']);
-            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update')->middleware(['permission:update order management']);
             Route::get('/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy')->middleware(['permission:delete order management']);
         });
 

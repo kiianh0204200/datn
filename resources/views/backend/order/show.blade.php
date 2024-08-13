@@ -26,19 +26,41 @@
                             <label class="form-label d-inline-block me-2 mb-0">{{ __('backend.Payment Status') }}:</label>
                             <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" name="payment_status">
                                 <option>{{ __('backend.Change status') }}</option>
-                                <option value="pending" @if($order->payment_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
-                                <option value="paid" @if($order->payment_status == 'paid') selected @endif>{{ __('backend.Paid') }}</option>
-                                <option value="refunded" @if($order->payment_status == 'refunded') selected @endif>{{ __('backend.Refunded') }}</option>
-                                <option value="cancel" @if($order->payment_status == 'cancel') selected @endif>{{ __('backend.Cancel') }}</option>
+                                @if($order->payment_status === 'pending')
+                                    <option value="pending" @if($order->payment_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
+                                    <option value="paid" @if($order->payment_status == 'paid') selected @endif>{{ __('backend.Paid') }}</option>
+                                @elseif($order->payment_status === 'refunded')
+                                    <option value="refunded" @if($order->payment_status == 'refunded') selected @endif>{{ __('backend.Refunded') }}</option>
+                                @elseif($order->payment_status === 'paid')
+                                    <option value="refunded" @if($order->payment_status == 'refunded') selected @endif>{{ __('backend.Refunded') }}</option>
+                                    <option value="paid" @if($order->payment_status == 'paid') selected @endif>{{ __('backend.Paid') }}</option>
+                                @elseif($order->payment_status === 'cancel')
+                                    <option value="cancel" @if($order->payment_status == 'cancel') selected @endif>{{ __('backend.Cancel') }}</option>
+                                @endif
                             </select>
                         </br>
                             <label class="form-label d-inline-block me-2 mb-0">{{ __('backend.Status') }}:</label>
                             <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" name="order_status" @if($order->order_status === 'completed') disabled @endif>
                                 <option>{{ __('backend.Change status') }}</option>
-                                <option value="pending" @if($order->order_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
-                                <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
-                                <option value="shipped" @if($order->order_status == 'shipped') selected @endif>{{ __('backend.Shipped') }}</option>
-                                <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+                                @if($order->order_status === 'pending')
+                                    <option value="pending" @if($order->order_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
+                                    <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
+                                    <option value="pending_ship" @if($order->order_status == 'pending_ship') selected @endif> Đang giao hàng </option>
+                                    <option value="shipped" @if($order->order_status == 'shipped') selected @endif>{{ __('backend.Shipped') }}</option>
+                                    <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+                                @elseif($order->order_status === 'confirmed')
+                                    <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
+                                    <option value="pending_ship" @if($order->order_status == 'pending_ship') selected @endif> Đang giao hàng </option>
+                                    <option value="shipped" @if($order->order_status == 'shipped') selected @endif>{{ __('backend.Shipped') }}</option>
+                                @elseif($order->order_status === 'pending_ship')
+                                    <option value="pending_ship" @if($order->order_status == 'pending_ship') selected @endif> Đang giao hàng </option>
+                                    <option value="shipped" @if($order->order_status == 'shipped') selected @endif>{{ __('backend.Shipped') }}</option>
+                                @elseif($order->order_status === 'shipped')
+                                    <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+                                @elseif($order->order_status === 'completed')
+                                    <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+                                @endif
+
                             </select>
 
                             <button type="submit" class="btn btn-primary" href="#">{{ __('backend.Save') }}</button>
@@ -140,13 +162,6 @@
                                             <dl class="dlist">
                                                 <dt>{{ __('frontend.Total') }}:</dt>
                                                 <dd><b class="h5">{{number_format($order->total, 0, '', ',')}}</b></dd>
-                                            </dl>
-                                            <dl class="dlist">
-                                                <dt class="text-muted">{{ __('backend.Status') }}:</dt>
-                                                <dd>
-                                                    <span
-                                                        class="badge rounded-pill alert-success text-success">{{$order->payment_status}}</span>
-                                                </dd>
                                             </dl>
                                         </article>
                                     </td>
