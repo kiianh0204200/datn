@@ -26,14 +26,14 @@ class ViewComposerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             return;
         }
-//        $categories = ProductCategory::with('children')->orderBy('id', 'desc')->limit(10)->get();
+        $categories = ProductCategory::with('children')->orderBy('id', 'desc')->limit(10)->get();
 
-//        view()->share('categories', $categories);
+        view()->share('categories', $categories);
 
-////        $banners = Banner::orderBy('id', 'desc')->limit(3)->get();
-//        view()->composer('frontend.home-components.main-home', function (View $view) use ($banners) {
-//            $view->with('banners', $banners);
-//        });
+        $banners = Banner::orderBy('id', 'desc')->limit(3)->get();
+        view()->composer('frontend.home-components.main-home', function (View $view) use ($banners) {
+            $view->with('banners', $banners);
+        });
 
         $colors = ProductOption::where('type', 'color')->get();
         view()->share('colors', $colors);
