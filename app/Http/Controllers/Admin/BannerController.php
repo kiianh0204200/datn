@@ -104,3 +104,1746 @@ class BannerController extends Controller
         return redirect()->route('admin.banner.index');
     }
 }
+
+
+
+public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
+    public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }public function destroy(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+        toastr()->success(__('backend.Banner deleted successfully'));
+        return redirect()->route('admin.banner.index');
+    }
