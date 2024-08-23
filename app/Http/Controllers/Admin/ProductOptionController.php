@@ -81,6 +81,9 @@ class ProductOptionController extends Controller
         toastr()->success(__('backend.Product Option updated successfully'));
 
         return redirect()->route('admin.product-option.index');
+        // toastr()->success(__('backend.Product Option updated successfully'));
+
+        // return redirect()->route('admin.product-option.index');
     }
 
     /**
