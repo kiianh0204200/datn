@@ -128,3 +128,50 @@ class HomeController extends Controller
         ]);
     }
 }
+
+
+$labels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+        $productCounts = array_values(array_replace(array_fill(0, 12, 0), $productData));
+        $orderCounts = array_values(array_replace(array_fill(0, 12, 0), $orderData));
+        $revenues = array_values(array_replace(array_fill(0, 12, 0), $revenueData));
+    
+        return response()->json([
+           'labels' => array_map(fn($month) => "Tháng $month", $months),
+            'productCounts' => $productCounts,
+            'orderCounts' => $orderCounts,
+            'revenues' => $revenues,
+        ]);
+    }$labels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+    $productCounts = array_values(array_replace(array_fill(0, 12, 0), $productData));
+    $orderCounts = array_values(array_replace(array_fill(0, 12, 0), $orderData));
+    $revenues = array_values(array_replace(array_fill(0, 12, 0), $revenueData));
+
+    return response()->json([
+       'labels' => array_map(fn($month) => "Tháng $month", $months),
+        'productCounts' => $productCounts,
+        'orderCounts' => $orderCounts,
+        'revenues' => $revenues,
+    ]);
+}$labels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+$productCounts = array_values(array_replace(array_fill(0, 12, 0), $productData));
+$orderCounts = array_values(array_replace(array_fill(0, 12, 0), $orderData));
+$revenues = array_values(array_replace(array_fill(0, 12, 0), $revenueData));
+
+return response()->json([
+   'labels' => array_map(fn($month) => "Tháng $month", $months),
+    'productCounts' => $productCounts,
+    'orderCounts' => $orderCounts,
+    'revenues' => $revenues,
+]);
+}$labels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+$productCounts = array_values(array_replace(array_fill(0, 12, 0), $productData));
+$orderCounts = array_values(array_replace(array_fill(0, 12, 0), $orderData));
+$revenues = array_values(array_replace(array_fill(0, 12, 0), $revenueData));
+
+return response()->json([
+   'labels' => array_map(fn($month) => "Tháng $month", $months),
+    'productCounts' => $productCounts,
+    'orderCounts' => $orderCounts,
+    'revenues' => $revenues,
+]);
+}
