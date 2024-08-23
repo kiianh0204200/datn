@@ -45,21 +45,21 @@ class RegisterController extends Controller
 
 
 
-// public function store(RegisterRequest $request)
-// {
-//     $data = $request->safe()->all();
+public function store(RegisterRequest $request)
+{
+    $data = $request->safe()->all();
 
-//     $user = User::create([
-//         'name' => $data['name'],
-//         'email' => $data['email'],
-//         'password' => bcrypt($data['password']),
-//     ]);
+    $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+    ]);
 
-//     $role = Role::findByName('employee');
+    $role = Role::findByName('employee');
 
-//     $user->assignRole($role);
+    $user->assignRole($role);
 
-//     Auth::login($user);
+    Auth::login($user);
 
-//     return redirect(route('admin.home'));
-// }
+    return redirect(route('admin.home'));
+}
