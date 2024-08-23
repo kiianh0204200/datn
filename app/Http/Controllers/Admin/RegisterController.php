@@ -40,21 +40,3 @@ class RegisterController extends Controller
         return redirect(route('admin.home'));
     }
 }
-public function store(RegisterRequest $request)
-{
-    $data = $request->safe()->all();
-
-    $user = User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => bcrypt($data['password']),
-    ]);
-
-    $role = Role::findByName('employee');
-
-    $user->assignRole($role);
-
-    Auth::login($user);
-
-    return redirect(route('admin.home'));
-}
