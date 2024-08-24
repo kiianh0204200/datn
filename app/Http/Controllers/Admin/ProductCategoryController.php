@@ -1451,25 +1451,4 @@ class ProductCategoryController extends Controller
        return redirect()->route('admin.category.index');
    }
 
-   /**
-    * Remove the specified resource from storage.
-    */
-   public function destroy(string $id)
-   {
-       $category = ProductCategory::find($id);
-
-       $category->delete();
-       toastr()->success(__('backend.Category deleted successfully'));
-       return redirect()->route('admin.category.index');
-   }
-
-   protected function checkSlug($name)
-   {
-       $checkSlug = ProductCategory::where('slug', Str::slug($name))->exists();
-       if ($checkSlug) {
-           $slug = Str::slug($name) . '-' . uniqid();
-       } else {
-           $slug = Str::slug($name);
-       }
-       return $slug;
-   }
+ 
