@@ -61,6 +61,19 @@ class CheckoutController extends Controller
                     'image' => $item->options->image,
                 ]);
             }
+            foreach (\Cart::content() as $item) {
+                OrderDetail::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->id,
+                    'name' => $item->name,
+                    'price' => $item->price,
+                    'color' => $item->options->color,
+                    'size' => $item->options->size,
+                    'quantity' => $item->qty,
+                    'total' => $item->price * $item->qty,
+                    'image' => $item->options->image,
+                ]);
+            }
             DB::commit();
 
             if ($request->payment_method == 'VnPay') {
