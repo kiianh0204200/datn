@@ -28,6 +28,12 @@ class ProductListController extends Controller
             ->when($category, function ($query, $category) {
                 $query->where('product_category_id', $category);
             })
+            ->when($name, function ($query, $name) {
+                $query->where('name', 'like', "%{$name}%");
+            })
+            ->when($category, function ($query, $category) {
+                $query->where('product_category_id', $category);
+            })
             ->when($priceMin && $priceMax, function ($query) use($priceMin, $priceMax){
                 $query->whereBetween('price', [$priceMin, $priceMax]);
             })
