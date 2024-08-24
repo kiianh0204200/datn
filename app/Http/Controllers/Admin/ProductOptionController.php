@@ -44,6 +44,20 @@ class ProductOptionController extends Controller
 
         return redirect()->route('admin.product-option.index');
     }
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $productOption = ProductOption::findOrFail($id);
+
+        return view('backend.product-option.edit', compact('productOption'));
+    }
 
     /**
      * Display the specified resource.
@@ -94,6 +108,20 @@ class ProductOptionController extends Controller
         ProductOption::where('id', $id)->first()?->delete();
 
         toastr()->success(__('backend.Product Option deleted successfully'));
+        return redirect()->route('admin.product-option.index');
+    }
+    public function store(StoreRequest $request)
+    {
+        $data = $request->safe()->all();
+
+        ProductOption::create([
+            'name' => $data['name'],
+            'type' => $data['type'],
+            'value' => $data['value'] ?? null,
+        ]);
+
+        toastr()->success(__('backend.Product Option created successfully'));
+
         return redirect()->route('admin.product-option.index');
     }
 }
