@@ -77,10 +77,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
-<<<<<<< HEAD
-=======
-        Route::get('/admin/homes/chart-data', [AdminHomeController::class, 'getChartData'])->name('admin.homes.chart-data');
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 
         Route::group(['prefix' => 'banner'], function () {
             Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index')->middleware(['permission:read banner management']);
@@ -160,12 +156,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('admin.order.index')->middleware(['permission:read order management']);
             Route::get('/show/{id}', [OrderController::class, 'show'])->name('admin.order.show')->middleware(['permission:read order management']);
-<<<<<<< HEAD
-            Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit')->middleware(['permission:update order management']);
-            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update');
-=======
             Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update')->middleware(['permission:update order management']);
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
             Route::get('/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy')->middleware(['permission:delete order management']);
         });
 
@@ -177,14 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index')->middleware(['permission:read user management']);
-<<<<<<< HEAD
-            Route::get('/create', [UserController::class, 'create'])->name('admin.users.create')->middleware(['permission:create user management']);
-            Route::post('/', [UserController::class, 'store'])->name('admin.users.store');
-            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit')->middleware(['permission:edit user management']);
-            Route::patch('/{id}', [UserController::class, 'update'])->name('admin.users.update');
-=======
             Route::get('/view/{id}', [UserController::class, 'show'])->name('admin.users.show')->middleware(['permission:read user management']);
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
             Route::get('/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['permission:delete user management']);
         });
     });
@@ -227,10 +211,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
     Route::prefix('/my-account')->group(function () {
-<<<<<<< HEAD
-=======
         Route::post('/change-password', [AccountController::class, 'changePassword'])->name('frontend.user.change-password');
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
