@@ -48,6 +48,16 @@ class ProductCommentController extends Controller
             'product_id' => $product->id,
             'is_active' => '1',
         ]);
+        ProductComment::create([
+            'user_id' => auth()->id(),
+            'email' => $request->email,
+            'name' => $request->name,
+            'messages' => $request->comment,
+            'rating' => $request->rating,
+            'product_id' => $product->id,
+            'is_active' => '1',
+        ]);
+
 
         toastr()->success(__('frontend.Comment created successfully.'));
 
