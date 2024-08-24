@@ -93,3 +93,17 @@ class OrderController extends Controller
         return back();
     }
 }
+
+   /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->orderItems()->delete();
+        $order->delete();
+
+        toastr()->success('Xóa đơn hàng thành công');
+        return back();
+    }
+}
