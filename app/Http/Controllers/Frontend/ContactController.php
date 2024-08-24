@@ -257,4 +257,9 @@ class CheckoutController extends Controller
             return redirect()->route('frontend.home')->with('error', 'Đơn hàng không thanh toán thành công');
         }
     }
+    public function index()
+    {
+        $carts = Cart::content();
+        return view('frontend.pages.cart', compact('carts'));
+    }
 }
