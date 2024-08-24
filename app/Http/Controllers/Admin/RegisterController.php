@@ -39,6 +39,8 @@ class RegisterController extends Controller
 
         return redirect(route('admin.home'));
     }
+<<<<<<< HEAD
+=======
     public function register(Request $request)
     {
         $request->validate([
@@ -47,4 +49,5 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'confirmed']
         ]);
 
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 }

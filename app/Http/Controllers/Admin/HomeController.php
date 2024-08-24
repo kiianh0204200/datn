@@ -41,7 +41,11 @@ class HomeController extends Controller
             ->whereBetween('created_at', [$start, $end])
             ->count();
 
+<<<<<<< HEAD
+        return view('backend.index', compact( 'order', 'revenue', 'product', 'total','category','earnings'));
+=======
         return view('backend.index', compact('order', 'revenue', 'product', 'total', 'category', 'earnings'));
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
     }
 
     /**
@@ -91,6 +95,8 @@ class HomeController extends Controller
     {
         //
     }
+<<<<<<< HEAD
+=======
     public function getChartData()
     {
         $months = range(1, 12); // Ví dụ: tháng từ 1 đến 12
@@ -127,4 +133,5 @@ class HomeController extends Controller
             'revenues' => $revenues,
         ]);
     }
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 }
