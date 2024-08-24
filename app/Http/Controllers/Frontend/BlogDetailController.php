@@ -35,5 +35,29 @@ class BlogDetailController extends Controller
             $post->increment('views');
 
         }
+<<<<<<< HEAD
     }
 }
+=======
+        
+    public function countView($post)
+    {
+        if(session()->has('viewed_posts')){
+            $postIds = session('viewed_posts');
+
+            if(!in_array($post->id, $postIds)){
+                $postIds[] = $post->id;
+                $post->increment('views');
+            }
+            session(['viewed_posts' => $postIds]);
+
+        }else {
+            session(['viewed_posts' => [$post->id]]);
+
+            $post->increment('views');
+
+        }
+    }
+}
+}
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b

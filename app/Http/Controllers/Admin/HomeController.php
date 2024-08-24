@@ -41,7 +41,11 @@ class HomeController extends Controller
             ->whereBetween('created_at', [$start, $end])
             ->count();
 
+<<<<<<< HEAD
         return view('backend.index', compact( 'order', 'revenue', 'product', 'total','category','earnings'));
+=======
+        return view('backend.index', compact('order', 'revenue', 'product', 'total', 'category', 'earnings'));
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
     }
 
     /**
@@ -91,4 +95,43 @@ class HomeController extends Controller
     {
         //
     }
+<<<<<<< HEAD
+=======
+    public function getChartData()
+    {
+        $months = range(1, 12); // Ví dụ: tháng từ 1 đến 12
+        // Lấy dữ liệu số lượng sản phẩm theo tháng
+        $productData = Product::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Lấy dữ liệu số lượng đơn hàng theo tháng
+        $orderData = Order::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->groupBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Lấy dữ liệu doanh thu theo tháng
+        $revenueData = Order::selectRaw('MONTH(created_at) as month, SUM(total) as total')
+            ->groupBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+
+
+        // Định dạng dữ liệu cho biểu đồ
+        $labels = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+        $productCounts = array_values(array_replace(array_fill(0, 12, 0), $productData));
+        $orderCounts = array_values(array_replace(array_fill(0, 12, 0), $orderData));
+        $revenues = array_values(array_replace(array_fill(0, 12, 0), $revenueData));
+
+        return response()->json([
+            'labels' => array_map(fn($month) => "Tháng $month", $months),
+            'productCounts' => $productCounts,
+            'orderCounts' => $orderCounts,
+            'revenues' => $revenues,
+        ]);
+    }
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 }

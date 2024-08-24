@@ -5376,11 +5376,11 @@ h6.post-title {
           align-items: center;
 }
 
-.header-wrap.header-space-between {
+/* .header-wrap.header-space-between {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-}
+} */
 
 .header-wrap .header-right {
   width: 100%;
@@ -5395,15 +5395,19 @@ h6.post-title {
   justify-content: space-between;
 }
 
-.logo a {
+/* .logo a {
   display: block;
-}
+} */
 
 .logo.logo-width-1 {
-  margin-right: 123px;
+  margin-right: 23px;
 }
 
+<<<<<<< HEAD
 .logo.logo-width-1 a img {
+=======
+.logo.logo-width-1 .logo2 {
+>>>>>>> 5973f6aa8549262ee7396ff487931565749c2f8f
   width: 120px;
   min-width: 120px;
 }

@@ -4,11 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 
 class Order extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
     const STATUS_ORDER = [
         'pending' => 'Chờ xác nhận',
         'confirmed' => 'Đã xác nhận',
@@ -49,4 +55,30 @@ class Order extends Model
         'status_payment',
         'total_price',
     ];
+=======
+    protected $table = 'orders';
+
+    protected $fillable = [
+        'user_id',
+        'order_id',
+        'total',
+        'payment_method',
+        'payment_status',
+        'order_status',
+        'payment_id',
+        'address',
+        'address_2',
+        'notes',
+    ];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
+    }
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 }

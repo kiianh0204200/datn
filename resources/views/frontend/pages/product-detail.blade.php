@@ -104,7 +104,7 @@
                                         </div>
                                         <ul class="product-meta font-xs color-grey mt-50">
                                             <li class="mb-5">SKU: <a href="#">{{$product->sku}}</a></li>
-                                            <li>{{ __('frontend.Availability') }}:<span class="in-stock text-success ml-5">8 {{ __('frontend.Item In Stock') }}</span></li>
+                                            <li>{{ __('frontend.Availability') }}:<span class="in-stock text-success ml-5">100 {{ __('frontend.Item In Stock') }}</span></li>
                                         </ul>
                                     </div>
                                     <!-- Detail Info -->
@@ -442,11 +442,16 @@
                     },
                     data: {product_id: productId, size: sizeId, color: colorId, quantity: quantity},
                     success: function (response) {
-                        location.reload();
                         toastr.success(response.message);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 5000);
                     },
                     error: function (response) {
                         toastr.error(response.responseJSON.message);
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 5000);
                     }
                 });
             });

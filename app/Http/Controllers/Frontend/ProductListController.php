@@ -28,6 +28,12 @@ class ProductListController extends Controller
             ->when($category, function ($query, $category) {
                 $query->where('product_category_id', $category);
             })
+            ->when($name, function ($query, $name) {
+                $query->where('name', 'like', "%{$name}%");
+            })
+            ->when($category, function ($query, $category) {
+                $query->where('product_category_id', $category);
+            })
             ->when($priceMin && $priceMax, function ($query) use($priceMin, $priceMax){
                 $query->whereBetween('price', [$priceMin, $priceMax]);
             })
@@ -41,6 +47,17 @@ class ProductListController extends Controller
                     $query->where('size_id', $size);
                 });
             })
+            ->when($size, function ($query, $size) {
+                $query->whereHas('size', function ($query) use ($size) {
+                    $query->where('size_id', $size);
+                });
+            })
+            ->when($condition, function ($query, $condition) {
+                $query->where('condition', $condition);
+            })
+            ->orderBy($sortBy, $sort)
+            ->paginate($limit);
+
             ->when($condition, function ($query, $condition) {
                 $query->where('condition', $condition);
             })
