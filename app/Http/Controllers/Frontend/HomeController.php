@@ -37,6 +37,13 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->limit(10)
             ->get();
+            $productBestSeller = Product::query()
+            ->with('productCategory')
+            ->where('condition', ProductCondition::BestSeller->value)
+            ->where('is_active', true)
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
         $products = Product::query()
             ->with('productCategory')
             ->orderBy('id', 'desc')
