@@ -39,4 +39,12 @@ class RegisterController extends Controller
 
         return redirect(route('admin.home'));
     }
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['email', 'required'],
+            'password' => ['required', 'string', 'confirmed']
+        ]);
+
 }
