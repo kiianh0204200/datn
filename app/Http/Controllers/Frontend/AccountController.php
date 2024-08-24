@@ -47,6 +47,15 @@ class AccountController extends Controller
             return redirect()->back()->with('error', __('frontend.Order not found.'));
         }
     }
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'address_2' => 'nullable|string|max:255',
+        ]);
 
     public function orderCancel($id)
     {
