@@ -38,8 +38,11 @@ class OrderDataTable extends DataTable
             ->editColumn('order_status', function ($data) {
                 if ($data->order_status == 'confirmed') {
                     return "<span class='badge rounded-pill alert-success'>$data->order_status</span>";
+<<<<<<< HEAD
+=======
                 } elseif ($data->order_status === 'pending_ship') {
                     return "<span class='badge rounded-pill alert-info'>Đang giao hàng</span>";
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
                 } else {
                     return "<span class='badge rounded-pill alert-warning'>$data->order_status</span>";
                 }

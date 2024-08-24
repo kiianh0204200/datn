@@ -23,7 +23,10 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
+<<<<<<< HEAD
+=======
             toastr()->success('Đăng nhập thành công!');
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
             return redirect()->route('frontend.home');
         }
 
@@ -42,6 +45,8 @@ class LoginController extends Controller
 
         return redirect(route('frontend.login'))->with('success', __('frontend.You have been logged out.'));
     }
+<<<<<<< HEAD
+=======
     public function logoutt(Request $request)
     {
         Auth::logoutt();
@@ -51,4 +56,5 @@ class LoginController extends Controller
 
         return redirect(route('frontend.login'))->with('success', __('frontend.You have been logged out.'));
     }
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 }

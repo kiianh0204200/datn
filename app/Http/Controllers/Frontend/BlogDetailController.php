@@ -35,6 +35,10 @@ class BlogDetailController extends Controller
             $post->increment('views');
 
         }
+<<<<<<< HEAD
+    }
+}
+=======
         
     public function countView($post)
     {
@@ -56,3 +60,4 @@ class BlogDetailController extends Controller
     }
 }
 }
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b

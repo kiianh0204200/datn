@@ -4,14 +4,67 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
+=======
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 
 class Product extends Model
 {
     use HasFactory;
 
+<<<<<<< HEAD
+    protected $fillable = [
+        'catelogue_id',
+        'name',
+        'slug',
+        'sku',
+        'img_thumbnail',
+        'price_regular',
+        'price_sale',
+        'description',
+        'content',
+        'material',
+        'user_manual',
+        'views',
+        'is_active',
+        'is_hot_deal',
+        'is_good_deal',
+        'is_new',
+        'is_show_home',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_hot_deal' => 'boolean',
+        'is_good_deal' => 'boolean',
+        'is_new' => 'boolean',
+        'is_show_home' => 'boolean',
+    ];
+
+    public function catelogue()
+    {
+        return $this->belongsTo(Catelogue::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function galleries()
+    {
+        return $this->hasMany(ProductGallery::class);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
+}
+=======
     protected $table = 'products';
 
     protected $fillable = [
@@ -846,3 +899,4 @@ public function comments(): HasMany
     return $this->hasMany(ProductComment::class, 'product_id', 'id');
 }
 }
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
