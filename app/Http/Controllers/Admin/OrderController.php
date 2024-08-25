@@ -80,7 +80,7 @@ class OrderController extends Controller
         $order->orderItems()->delete();
         $order->delete();
 
-       
+        toastr()->success('Xóa đơn hàng thành công');
         return back();
     }
 }
