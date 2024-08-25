@@ -16,6 +16,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        $earnings = 22.89;
         $start = $request->query('date_from', Carbon::now()->startOfMonth()->format('Y-m-d'));
         $end = $request->query('date_to', Carbon::now()->endOfMonth()->format('Y-m-d H:i:s'));
 
@@ -40,7 +41,7 @@ class HomeController extends Controller
             ->whereBetween('created_at', [$start, $end])
             ->count();
 
-        return view('backend.index', compact( 'order', 'revenue', 'product', 'total','category'));
+        return view('backend.index', compact( 'order', 'revenue', 'product', 'total','category','earnings'));
     }
 
     /**
