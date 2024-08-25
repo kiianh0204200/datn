@@ -50,7 +50,7 @@ class ProductCategoryController extends Controller
             'parent_id' => $data['parent_id'] ?? null,
         ]);
 
-       
+        toastr()->success(__('backend.Category created successfully'));
         return redirect()->route('admin.category.index');
     }
 
