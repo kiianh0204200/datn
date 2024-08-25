@@ -20028,3 +20028,11 @@ span.fi-rs-apps {
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
