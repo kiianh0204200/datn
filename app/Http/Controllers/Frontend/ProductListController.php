@@ -41,17 +41,6 @@ class ProductListController extends Controller
                     $query->where('size_id', $size);
                 });
             })
-            ->when($size, function ($query, $size) {
-                $query->whereHas('size', function ($query) use ($size) {
-                    $query->where('size_id', $size);
-                });
-            })
-            ->when($condition, function ($query, $condition) {
-                $query->where('condition', $condition);
-            })
-            ->orderBy($sortBy, $sort)
-            ->paginate($limit);
-
             ->when($condition, function ($query, $condition) {
                 $query->where('condition', $condition);
             })

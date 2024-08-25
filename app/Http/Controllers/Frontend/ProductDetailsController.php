@@ -54,16 +54,4 @@ class ProductDetailsController extends Controller
             'message' => 'success'
         ], 200);
     }
-    // public function getPriceBySize(Request $request)
-    // {
-    //     $price = ProductOptionValue::query()
-    //         ->where('product_id', $request->product_id)
-    //         ->where('size_id', $request->size_id)
-    //         ->first();
-    //     return response()->json([
-    //         'data' => $price,
-    //         'status' => true,
-    //         'message' => 'success'
-    //     ], 200);
-    // }
 }

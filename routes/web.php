@@ -77,7 +77,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
-        Route::get('/admin/homes/chart-data', [AdminHomeController::class, 'getChartData'])->name('admin.homes.chart-data');
 
         Route::group(['prefix' => 'banner'], function () {
             Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index')->middleware(['permission:read banner management']);
