@@ -78,7 +78,7 @@ class ProductCategoryController extends Controller
             toastr()->error(__('backend.Category not found.'));
             return redirect()->back();
         }
-       
+        return view('backend.category.edit', compact('category', 'categories'));
     }
 
     /**
