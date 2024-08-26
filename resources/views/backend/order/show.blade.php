@@ -43,6 +43,7 @@
                             <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" name="order_status" @if($order->order_status === 'completed') disabled @endif>
                                 <option>{{ __('backend.Change status') }}</option>
                                 @if($order->order_status === 'pending')
+                                    <option value="cancel" @if($order->order_status == 'cancel') selected @endif> {{ __('backend.Cancel') }} </option>
                                     <option value="pending" @if($order->order_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
                                     <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
                                     <option value="pending_ship" @if($order->order_status == 'pending_ship') selected @endif> Đang giao hàng </option>
@@ -59,6 +60,8 @@
                                     <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
                                 @elseif($order->order_status === 'completed')
                                     <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+                                @elseif($order->order_status === 'cancel')
+                                    <option value="cancel" @if($order->order_status == 'cancel') selected @endif>{{ __('backend.Cancel') }}</option>
                                 @endif
 
                             </select>
@@ -98,7 +101,7 @@
                                 <h6 class="mb-1">{{ __('backend.Order information') }}</h6>
                                 <p class="mb-1">
                                     {{ __('backend.Shipping') }}: Ship code <br> {{ __('backend.Pay method') }}: {{$order->payment_method}} <br>
-                                    {{ __('backend.Status') }}:{{$order->order_status}}
+                                    {{ __('backend.Status') }}: {{$order->order_status}}
                                 </p>
                             </div>
                         </article>

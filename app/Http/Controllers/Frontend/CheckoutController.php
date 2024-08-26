@@ -72,6 +72,18 @@ class CheckoutController extends Controller
                 }
             }
 
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+            // Update quantity product
+            foreach ($orderDetails as $orderDetail) {
+                $color = ProductOption::where('name', $orderDetail->color)->first();
+                $size = ProductOption::where('name', $orderDetail->size)->first();
+                ProductOptionValue::query()
+                    ->where('product_id', $orderDetail->product_id)
+                    ->where('color_id', $color->id)
+                    ->where('size_id', $size->id)
+                    ->decrement('in_stock', $orderDetail->quantity);
+            }
+
             Mail::to(auth()->user()->email)->send(new OrderShipped($order));
 
             Cart::destroy();
@@ -101,7 +113,6 @@ class CheckoutController extends Controller
         $vnp_Amount = number_format($order->total * 100, 0, '', '');
         $vnp_Locale = 'vn';
         $vnp_IpAddr = "1.55.197.187";
-        $startTime = date("YmdHis");
 
         $inputData = [
             "vnp_Version" => "2.1.0",

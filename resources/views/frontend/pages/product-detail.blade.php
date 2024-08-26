@@ -98,13 +98,13 @@
                                                        value="1">
                                             </div>
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart">{{ __('frontend.Add to cart') }}
+                                                <button id="button-add-cart" type="submit" class="button button-add-to-cart">{{ __('frontend.Add to cart') }}
                                                 </button>
                                             </div>
                                         </div>
                                         <ul class="product-meta font-xs color-grey mt-50">
                                             <li class="mb-5">SKU: <a href="#">{{$product->sku}}</a></li>
-                                            <li>{{ __('frontend.Availability') }}:<span class="in-stock text-success ml-5">8 {{ __('frontend.Item In Stock') }}</span></li>
+                                            <li>{{ __('frontend.Availability') }}:<span class="in-stock text-success ml-5" id="item_stock">0 {{ __('frontend.Item In Stock') }}</span></li>
                                         </ul>
                                     </div>
                                     <!-- Detail Info -->
@@ -401,6 +401,7 @@
                 let colorId = $(this).data('color');
                 let productId = $(this).data('product');
                 let sizeList = $('.size-filter');
+                let buttonAddCart = $('#button-add-cart');
                 $.ajax({
                     type: 'GET',
                     url: url, // Đường dẫn tới route xử lý AJAX
@@ -410,6 +411,8 @@
                         sizeList.empty();
                         $.each(response.data, function (index, size) {
                             if (size.in_stock === 0) {
+                                buttonAddCart.prop('disabled', true);
+                                buttonAddCart.text('Sản phẩm hết hàng');
                                 return;
                             }
 
@@ -420,6 +423,8 @@
                                 </li>
                             `
                             sizeList.append(liElement); // Thêm phần tử kích thước vào danh sách
+                            buttonAddCart.prop('disabled', false);
+                            buttonAddCart.text('Thêm vào giỏ hàng');
                         });
                     }
                 });
@@ -432,7 +437,6 @@
                 let productId = {{$product->id}};
                 let sizeId = $('.size-filter li.active a').data('size');
                 let colorId = $('.color-filter li.active a').data('color');
-
                 let quantity = $('.qty-value').val();
                 $.ajax({
                     type: 'POST',
@@ -442,16 +446,13 @@
                     },
                     data: {product_id: productId, size: sizeId, color: colorId, quantity: quantity},
                     success: function (response) {
-                        toastr.success(response.message);
+                        toastr.success('Thêm sản phẩm vào giỏ hàng thành công');
                         setTimeout(function () {
                             window.location.reload();
                         }, 5000);
                     },
                     error: function (response) {
-                        toastr.error(response.responseJSON.message);
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 5000);
+                        toastr.error('Thêm sản phẩm vào giỏ hàng thất bại');
                     }
                 });
             });

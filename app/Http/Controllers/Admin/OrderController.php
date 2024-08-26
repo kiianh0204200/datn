@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\ProductOption;
+use App\Models\ProductOptionValue;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -66,6 +69,21 @@ class OrderController extends Controller
             'order_status' => $data['order_status'] ?? $order->order_status,
             'payment_status' => $data['payment_status'] ?? $order->payment_status,
         ]);
+
+        // Update quantity product when order status is cancel
+        if ($request->input('order_status') === 'cancel') {
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+            // Update quantity product
+            foreach ($orderDetails as $orderDetail) {
+                $color = ProductOption::where('name', $orderDetail->color)->first();
+                $size = ProductOption::where('name', $orderDetail->size)->first();
+                ProductOptionValue::query()
+                    ->where('product_id', $orderDetail->product_id)
+                    ->where('color_id', $color->id)
+                    ->where('size_id', $size->id)
+                    ->increment('in_stock', $orderDetail->quantity);
+            }
+        }
 
         toastr()->success('Cập nhật trạng thái đơn hàng thành công');
         return back();

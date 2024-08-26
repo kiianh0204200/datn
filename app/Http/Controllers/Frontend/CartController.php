@@ -34,7 +34,7 @@ class CartController extends Controller
         $product = Product::where('id', $product_id)->first();
 
         if (!$product) {
-            return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ']);
+            return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ'], 400);
         }
 
         $productOptionColor = ProductOption::query()
@@ -44,7 +44,7 @@ class CartController extends Controller
             ->first();
 
         if (!$productOptionColor) {
-            return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ']);
+            return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ'], 400);
         }
 
         $productOptionSize = ProductOption::query()
@@ -53,7 +53,7 @@ class CartController extends Controller
             ->first();
 
         if (!$productOptionSize) {
-            return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ']);
+            return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ'], 400);
         }
 
         $productOptionValue = ProductOptionValue::query()
@@ -63,7 +63,7 @@ class CartController extends Controller
             ->first();
 
         if ($productOptionValue->in_stock < $quantity) {
-            return response()->json(['success' => false, 'message' => __('frontend.Product is out of stock!')]);
+            return response()->json(['success' => false, 'message' => __('frontend.Product is out of stock!')], 400);
         }
 
         // add the product to cart

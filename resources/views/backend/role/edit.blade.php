@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col-9">
                 <div class="content-header">
-                    <h2 class="content-title">Add New Role</h2>
+                    <h2 class="content-title">Chỉnh sửa role</h2>
                     <div>
-                        <button class="btn btn-md rounded font-sm hover-up">Publish</button>
+                        <button class="btn btn-md rounded font-sm hover-up">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="mb-4">
-                            <label for="product_title" class="form-label">Role Name</label>
+                            <label for="product_title" class="form-label">Tên</label>
                             <input type="text" placeholder="Type here"
                                    class="form-control @error('name') is-invalid @enderror" id="product_title"
                                    name="name"
