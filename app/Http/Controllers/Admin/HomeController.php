@@ -40,7 +40,7 @@ class HomeController extends Controller
             ->whereBetween('created_at', [$start, $end])
             ->count();
 
-        return view('backend.index', compact( 'order', 'revenue', 'product', 'total','category'));
+
     }
 
     /**

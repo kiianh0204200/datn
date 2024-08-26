@@ -33,7 +33,7 @@ class CartController extends Controller
         $product = Product::find($product_id);
 
         if (!$product) {
-            return response()->json(['success' => false, 'message' => __('frontend.Invalid product')]);
+
         }
 
         $productOptionColor = ProductOption::where('id', $color)
@@ -42,7 +42,7 @@ class CartController extends Controller
             ->first();
 
         if (!$productOptionColor) {
-            return response()->json(['success' => false, 'message' => __('frontend.Invalid color')]);
+
         }
 
         $productOptionSize = ProductOption::where('id', $size)
@@ -50,7 +50,7 @@ class CartController extends Controller
             ->first();
 
         if (!$productOptionSize) {
-            return response()->json(['success' => false, 'message' => __('frontend.Invalid size')]);
+
         }
 
         $productOptionValue = ProductOptionValue::where('product_id', $product->id)

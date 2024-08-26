@@ -6,9 +6,6 @@
 <body>
 <div class="screen-overlay"></div>
 <aside class="navbar-aside" id="offcanvas_aside">
-    <div class="logo mx-auto my-3 d-flex align-items-center logo-adjust">
-        <a href="{{ route('admin.home') }}" class="d-flex justify-content-center align-items-center">
-            <img src="{{ asset('backend/assets/imgs/Logo.png') }}" class="img-fluid w-25" alt="Golden Era">
         </a>
         <button class="btn btn-icon btn-aside-minimize ms-auto">
             <i class="text-muted material-icons md-menu_open"></i>

@@ -340,30 +340,18 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                            <img src="{{ asset('backend/assets/imgs/items/13.jpg') }}" alt="Hình ảnh sản phẩm" class="img-fluid d-block" style="width: 150px; height: auto;"/>
+
                                                         </div>
                                                         <div>
                                                             <h5 class="fs-14 my-1"><a
                                                                     href="product-details.html"
-                                                                    class="text-reset">Sonia Gilliam T-Shirts</a></h5>
+
                                                             <span class="text-muted">01 Tháng 8, 2024</span>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">601.710đ</h5>
-                                                    <span class="text-muted">Giá</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">99</h5>
-                                                    <span class="text-muted">Đơn hàng</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">0</h5>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">56.560.740 đ</h5>
+
                                                     <span class="text-muted">Tổng tiền</span>
                                                 </td>
                                             </tr>
@@ -373,19 +361,17 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <img
-                                                                src="{{ asset('backend/assets/imgs/items/1.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm" class="img-fluid d-block" style="width: 150px; height: auto;"/>
-                                                        </div>
+                        </div>
                                                         <div>
                                                             <h5 class="fs-14 my-1"><a
                                                                     href="product-details.html"
-                                                                    class="text-reset"> Colorful Hawaiian Shirts</a></h5>
+
                                                             <span class="text-muted">05 Tháng 8, 2024</span>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">226.980đ</h5>
+
                                                     <span class="text-muted">Giá</span>
                                                 </td>
                                                 <td>
@@ -467,11 +453,7 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-2">
                                                             <img
-                                                                src="{{ asset('backend/assets/imgs/items/15.jpg') }}"
-                                                                alt="Hình ảnh thương hiệu" class="img-fluid d-block" style="width: 200px; height: auto;"/>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-muted">Shirts</span>
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -492,26 +474,12 @@
                                             <tr>
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/14.png') }}"
-                                                                alt="Hình ảnh thương hiệu" class="img-fluid d-block" style="width: 200px; height: auto;"/>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-muted">T-Shirts</span>
+
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0">47</p>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">23.500.000đ</h5>
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 mb-0">30%<i
+
                                                             class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
                                                     </h5>
                                                 </td>

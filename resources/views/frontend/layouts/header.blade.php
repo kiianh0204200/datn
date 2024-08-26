@@ -65,9 +65,7 @@
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
-                <div class="logo mx-auto my-3">
-                    <a href="{{ route('frontend.home') }}" class="d-flex justify-content-center align-items-center">
-                        <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid w-25" alt="Golden Era">
+
                     </a>
                 </div>
                 <div class="header-right">
