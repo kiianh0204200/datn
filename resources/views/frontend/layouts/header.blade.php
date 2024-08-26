@@ -65,11 +65,12 @@
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
-                <div class="logo logo-width-1">
-                    <a href="{{route('frontend.home')}}" class="d-flex">
-                        <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid" alt="Golden Era">
+                <div class="logo mx-auto my-3">
+                    <a href="{{ route('frontend.home') }}" class="d-flex justify-content-center align-items-center">
+                        <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid w-25" alt="Golden Era">
                     </a>
                 </div>
+
                 <div class="header-right">
                     <div class="search-style-2">
                         <form action="{{route('shop')}}">
@@ -81,7 +82,7 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="/cart">
-                                    <img alt="Evara"
+                                    <img alt="Golden Era"
                                          src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}">
                                     <span class="pro-count blue">{{\Cart::content()->count()}}</span>
                                 </a>
@@ -90,7 +91,7 @@
                                         @foreach(\Cart::content() as $cart)
                                             <li>
                                                 <div class="shopping-cart-img">
-                                                    <a href="/product-detail"><img alt="Evara" src="{{asset('uploads/products/' . $cart->options->image)}}"></a>
+                                                    <a href="/product-detail"><img alt="Golden Era" src="{{asset('uploads/products/' . $cart->options->image)}}"></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="/product-detail">{{$cart->name}}</a></h4>
@@ -192,14 +193,14 @@
                     <div class="header-action-2">
                         {{-- <div class="header-action-icon-2">
                             <a href="shop-wishlist.html">
-                                <img alt="Evara"
+                                <img alt="Golden Era"
                                      src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}">
                                 <span class="pro-count white">4</span>
                             </a>
                         </div> --}}
                         <div class="header-action-icon-2">
                             <a class="mini-cart-icon" href="/cart">
-                                <img alt="Evara"
+                                <img alt="Golden Era"
                                      src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}">
                                 <span class="pro-count blue">{{\Cart::content()->count()}}</span>
                             </a>
@@ -208,7 +209,7 @@
                                     @foreach(\Cart::content() as $cart)
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="/product-detail"><img alt="Evara" src="{{asset('uploads/products/' . $cart->options->image)}}"></a>
+                                                <a href="/product-detail"><img alt="Golden Era" src="{{asset('uploads/products/' . $cart->options->image)}}"></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="/product-detail">{{$cart->name}}</a></h4>
@@ -276,7 +277,7 @@
                                 @if($category->children->count() > 0)
                                     <li class="has-children">
                                         <a href="{{route('shop')}}?category={{$category->id}}"><i
-                                                class="evara-font-dress"></i>{{$category->name}}</a>
+                                                class="Golden Era-font-dress"></i>{{$category->name}}</a>
                                         <div class="dropdown-menu">
                                             <ul class="mega-menu d-lg-flex">
                                                 <li class="mega-menu-col col-lg-7">

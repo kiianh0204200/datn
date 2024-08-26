@@ -2370,7 +2370,7 @@ label {
 .brand-logo img {
   width: auto;
   display: inline-block;
-  padding: 50px 0;
+  padding: 10px 0;
 }
 
 /*Heading tab*/
@@ -5400,12 +5400,17 @@ h6.post-title {
 }
 
 .logo.logo-width-1 {
-  margin-right: 23px;
-} 
+  margin-right: 10px;
+}
 
 .logo.logo-width-1 .logo2 {
   width: 120px;
   min-width: 120px;
+}
+
+.custom-logo-size {
+    width: 80px; /* Điều chỉnh kích thước logo theo nhu cầu */
+    height: auto; /* Đảm bảo tỷ lệ không bị biến dạng */
 }
 
 .search-style-1 form {

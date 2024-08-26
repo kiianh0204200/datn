@@ -341,14 +341,14 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <img
-                                                                src="{{ asset('backend/assets/imgs/items/224.jpg') }}"
+                                                                src="{{ asset('backend/assets/imgs/items/1.jpg') }}"
                                                                 alt="Hình ảnh sản phẩm"
                                                                 class="img-fluid d-block"/>
                                                         </div>
                                                         <div>
                                                             <h5 class="fs-14 my-1"><a
                                                                     href="product-details.html"
-                                                                    class="text-reset">Áo Adidas</a></h5>
+                                                                    class="text-reset">Áo Cardinal</a></h5>
                                                             <span class="text-muted">01 Tháng 8, 2024</span>
                                                         </div>
                                                     </div>
@@ -376,14 +376,14 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <img
-                                                                src="{{ asset('backend/assets/imgs/items/331.jpg') }}"
+                                                                src="{{ asset('backend/assets/imgs/items/9.jpg') }}"
                                                                 alt="Hình ảnh sản phẩm"
                                                                 class="img-fluid d-block"/>
                                                         </div>
                                                         <div>
                                                             <h5 class="fs-14 my-1"><a
                                                                     href="product-details.html"
-                                                                    class="text-reset">Quần Nike</a></h5>
+                                                                    class="text-reset">Giày Goldsparrow</a></h5>
                                                             <span class="text-muted">05 Tháng 8, 2024</span>
                                                         </div>
                                                     </div>
@@ -443,7 +443,7 @@
                         <div class="col-xl-6">
                             <div class="card card-height-100">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Nhà cung cấp hàng đầu</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Leading supplier</h4>
                                     <div class="flex-shrink-0">
                                         <div class="dropdown card-header-dropdown">
                                             <a class="text-reset dropdown-btn" href="#"
@@ -471,12 +471,12 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-2">
                                                             <img
-                                                                src="{{ asset('backend/assets/imgs/items/999.jpg') }}"
+                                                                src="{{ asset('backend/assets/imgs/brands/brand-1.jpg') }}"
                                                                 alt="Quần áo"
                                                                 class="avatar-sm p-2"/>
                                                         </div>
                                                         <div>
-                                                            <span class="text-muted">Nike</span>
+                                                            <span class="text-muted">Cardinal</span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -496,8 +496,14 @@
                                             <tr>
                                                 <td>
                                                     <div class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <img
+                                                                src="{{ asset('backend/assets/imgs/brands/brand-2.jpg') }}"
+                                                                alt="Quần áo"
+                                                                class="avatar-sm p-2"/>
+                                                        </div>
                                                         <div>
-                                                            <span class="text-muted">Adidas</span>
+                                                            <span class="text-muted">Goldsparrow</span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -506,10 +512,10 @@
                                                     <span class="text-muted">Tồn kho</span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted">20.000.000 đ</span>
+                                                    <span class="text-muted">30.000.000 đ</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 mb-0">57%<i
+                                                    <h5 class="fs-14 mb-0">40%<i
                                                             class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
                                                     </h5>
                                                 </td>
