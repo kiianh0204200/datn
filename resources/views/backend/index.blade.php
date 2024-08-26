@@ -12,7 +12,7 @@
     </script>
 @endpush
 @section('content')
-    <form action="{{route('admin.home')}}" method="GET">
+    <form action="{{ route('admin.home') }}" method="GET">
         <div class="row">
             <div class="col">
 
@@ -21,7 +21,7 @@
                         <div class="col-12">
                             <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                 <div class="flex-grow-1">
-                                    <h4 class="fs-16 mb-1">Chào mừng bạn đã đến với chúng tôi!</h4>
+                                    <h4 class="fs-16 mb-1">Good Morning, Anna!</h4>
                                     <p class="text-muted mb-0">Here's what's happening with your store today.</p>
                                 </div>
                                 <div class="mt-3 mt-lg-0">
@@ -29,7 +29,8 @@
                                         <div class="row g-3 mb-0 align-items-center">
                                             <div class="col-lg-4">
                                                 <div class="mb-4">
-                                                    <label class="form-label" for="date_from">{{ __('backend.From') }}</label>
+                                                    <label class="form-label"
+                                                        for="date_from">{{ __('backend.From') }}</label>
                                                     <input class="form-control" type="date" name="date_from">
                                                 </div>
                                             </div>
@@ -41,8 +42,10 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="mb-4">
-                                                    <button class="btn btn-success" type="submit">{{ __('backend.Submit') }}</button>
-                                                    <button class="btn btn-success" onclick="clearAllFilters()">{{ __('backend.Clear') }}</button>
+                                                    <button class="btn btn-success"
+                                                        type="submit">{{ __('backend.Submit') }}</button>
+                                                    <button class="btn btn-success"
+                                                        onclick="clearAllFilters()">{{ __('backend.Clear') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,12 +62,12 @@
                         <div class="col-lg-3">
                             <div class="card card-body mb-4">
                                 <article class="icontext">
-                <span class="icon icon-sm rounded-circle bg-primary-light">
-                    <i class="text-primary material-icons md-monetization_on"></i>
-                </span>
+                                    <span class="icon icon-sm rounded-circle bg-primary-light">
+                                        <i class="text-primary material-icons md-monetization_on"></i>
+                                    </span>
                                     <div class="text">
                                         <h6 class="mb-1 card-title">{{ __('backend.Revenue') }}</h6>
-                                        <span>{{formatPrice($revenue)}}đ</span>
+                                        <span>{{ formatPrice($revenue) }}đ</span>
                                         <span class="text-sm">{{ __('backend.Shipping fees are not included') }}</span>
                                     </div>
                                 </article>
@@ -73,12 +76,12 @@
                         <div class="col-lg-3">
                             <div class="card card-body mb-4">
                                 <article class="icontext">
-                <span class="icon icon-sm rounded-circle bg-success-light">
-                    <i class="text-success material-icons md-local_shipping"></i>
-                </span>
+                                    <span class="icon icon-sm rounded-circle bg-success-light">
+                                        <i class="text-success material-icons md-local_shipping"></i>
+                                    </span>
                                     <div class="text">
                                         <h6 class="mb-1 card-title">{{ __('backend.Orders') }}</h6>
-                                        <span>{{$order}}</span>
+                                        <span>{{ $order }}</span>
                                         <span class="text-sm">{{ __('backend.Excluding orders in transit') }}</span>
                                     </div>
                                 </article>
@@ -87,13 +90,13 @@
                         <div class="col-lg-3">
                             <div class="card card-body mb-4">
                                 <article class="icontext">
-                <span class="icon icon-sm rounded-circle bg-warning-light">
-                    <i class="text-warning material-icons md-qr_code"></i>
-                </span>
+                                    <span class="icon icon-sm rounded-circle bg-warning-light">
+                                        <i class="text-warning material-icons md-qr_code"></i>
+                                    </span>
                                     <div class="text">
                                         <h6 class="mb-1 card-title">{{ __('backend.Products') }}</h6>
-                                        <span>{{$product}}</span>
-                                        <span class="text-sm">{{$category}} {{ __('backend.Categories') }}</span>
+                                        <span>{{ $product }}</span>
+                                        <span class="text-sm">{{ $category }} {{ __('backend.Categories') }}</span>
                                     </div>
                                 </article>
                             </div>
@@ -101,12 +104,12 @@
                         <div class="col-lg-3">
                             <div class="card card-body mb-4">
                                 <article class="icontext">
-                <span class="icon icon-sm rounded-circle bg-info-light">
-                    <i class="text-info material-icons md-shopping_basket"></i>
-                </span>
+                                    <span class="icon icon-sm rounded-circle bg-info-light">
+                                        <i class="text-info material-icons md-shopping_basket"></i>
+                                    </span>
                                     <div class="text">
                                         <h6 class="mb-1 card-title">{{ __('backend.Monthly Earnings') }}</h6>
-                                        <span>{{formatPrice($total)}}đ</span>
+                                        <span>{{ formatPrice($total) }}đ</span>
                                         <span class="text-sm">{{ __('backend.Based in your local time') }}.</span>
                                     </div>
                                 </article>
@@ -164,8 +167,7 @@
 
                                 <script>
                                     var options = {
-                                        series: [
-                                            {
+                                        series: [{
                                                 name: 'Orders',
                                                 type: 'line',
                                                 data: [80, 90, 70, 120, 80, 60, 50, 60, 70, 90, 80, 50] // Dữ liệu cho số lượng đơn hàng
@@ -201,8 +203,7 @@
                                             'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
                                         ],
-                                        yaxis: [
-                                            {
+                                        yaxis: [{
                                                 title: {
                                                     text: 'Orders'
                                                 },
@@ -250,26 +251,36 @@
 
                                 <!-- card body -->
                                 <div class="card-body">
-                                    <div id="sales-by-locations" data-colors='["--vz-light", "--vz-success", "--vz-primary"]' style="height: 269px" dir="ltr"></div>
+                                    <div id="sales-by-locations"
+                                        data-colors='["--vz-light", "--vz-success", "--vz-primary"]' style="height: 269px"
+                                        dir="ltr"></div>
                                     <div class="px-2 py-2 mt-1">
-                                        <p class="mb-1">Hà Nội <span class="float-end">45%</span></p>
+                                        <p class="mb-1">Hồ Chí Minh <span class="float-end">45%</span></p>
                                         <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 45%" aria-valuenow="45" aria-valuemin="0"
+                                                aria-valuemax="45"></div>
                                         </div>
 
-                                        <p class="mt-3 mb-1">Hồ Chí Minh <span class="float-end">30%</span></p>
+                                        <p class="mt-3 mb-1">Hà Nội <span class="float-end">30%</span></p>
                                         <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30"></div>
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                                aria-valuemax="30"></div>
                                         </div>
 
                                         <p class="mt-3 mb-1">Đà Nẵng <span class="float-end">15%</span></p>
                                         <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="15"></div>
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 15%" aria-valuenow="15" aria-valuemin="0"
+                                                aria-valuemax="15"></div>
                                         </div>
 
                                         <p class="mt-3 mb-1">Các khu vực khác <span class="float-end">10%</span></p>
                                         <div class="progress mt-2" style="height: 6px;">
-                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="10"></div>
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 10%" aria-valuenow="10" aria-valuemin="0"
+                                                aria-valuemax="10"></div>
                                         </div>
                                     </div>
                                 </div><!-- end card body -->
@@ -309,14 +320,13 @@
                         <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Sản phẩm bán chạy nhất</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
                                     <div class="flex-shrink-0">
                                         <div class="dropdown card-header-dropdown">
-                                            <a class="text-reset dropdown-btn" href="#"
-                                               data-bs-toggle="dropdown" aria-haspopup="true"
-                                               aria-expanded="false">
-                                                            <span class="fw-semibold text-uppercase fs-12">Sort by:
-                                                            </span><span class="text-muted">Today<i
+                                            <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <span class="fw-semibold text-uppercase fs-12">Sort by:
+                                                </span><span class="text-muted">Today<i
                                                         class="mdi mdi-chevron-down ms-1"></i></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
@@ -335,93 +345,86 @@
                                     <div class="table-responsive table-card">
                                         <table class="table table-hover table-centered align-middle table-nowrap mb-0">
                                             <tbody>
-                                            <!-- Ví dụ về một hàng sản phẩm -->
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
-<<<<<<< HEAD
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/1.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"/>
-=======
-
->>>>>>> d7ea7129afe5bf8d23431b972cd9042e701486fe
+                                                <!-- Ví dụ về một hàng sản phẩm -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm bg-light rounded p-1 me-2">
+                                                                <img src="{{ asset('backend/assets/imgs/items/1.jpg') }}"
+                                                                    alt="Hình ảnh sản phẩm" class="img-fluid d-block" />
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="fs-14 my-1"><a href="product-details.html"
+                                                                        class="text-reset">Áo cardinal</a></h5>
+                                                                <span class="text-muted">01 Tháng 8, 2024</span>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="product-details.html"
-<<<<<<< HEAD
-                                                                    class="text-reset">Áo Cardinal</a></h5>
-=======
-
->>>>>>> d7ea7129afe5bf8d23431b972cd9042e701486fe
-                                                            <span class="text-muted">01 Tháng 8, 2024</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">500.000đ</h5>
+                                                        <span class="text-muted">Giá</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">120</h5>
+                                                        <span class="text-muted">Đơn hàng</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">300</h5>
+                                                        <span class="text-muted">Tồn kho</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">60.000.000đ</h5>
+                                                        <span class="text-muted">Tổng tiền</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- Ví dụ về một hàng sản phẩm khác -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm bg-light rounded p-1 me-2">
+                                                                <img src="{{ asset('backend/assets/imgs/items/9.jpg') }}"
+                                                                    alt="Hình ảnh sản phẩm" class="img-fluid d-block" />
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="fs-14 my-1"><a href="product-details.html"
+                                                                        class="text-reset">Giày JBV</a></h5>
+                                                                <span class="text-muted">05 Tháng 8, 2024</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                            </tr>
-                                            <!-- Ví dụ về một hàng sản phẩm khác -->
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                            <img
-<<<<<<< HEAD
-                                                                src="{{ asset('backend/assets/imgs/items/9.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"/>
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="product-details.html"
-                                                                    class="text-reset">Giày Goldsparrow</a></h5>
-=======
-                        </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="product-details.html"
-
->>>>>>> d7ea7129afe5bf8d23431b972cd9042e701486fe
-                                                            <span class="text-muted">05 Tháng 8, 2024</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-
-                                                    <span class="text-muted">Giá</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">66</h5>
-                                                    <span class="text-muted">Đơn hàng</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">22</h5>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">14.980.680đ</h5>
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                            </tr>
-                                            <!-- Thêm các hàng sản phẩm khác nếu cần -->
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">450.000đ</h5>
+                                                        <span class="text-muted">Giá</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">80</h5>
+                                                        <span class="text-muted">Đơn hàng</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">150</h5>
+                                                        <span class="text-muted">Tồn kho</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">36.000.000đ</h5>
+                                                        <span class="text-muted">Tổng tiền</span>
+                                                    </td>
+                                                </tr>
+                                                <!-- Thêm các hàng sản phẩm khác nếu cần -->
                                             </tbody>
                                         </table>
                                     </div>
 
-                                    <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+                                    <div
+                                        class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
                                         <div class="col-sm">
                                             <div class="text-muted">
-                                                Hiển thị <span class="fw-semibold">2</span> trong tổng số <span class="fw-semibold">20</span> kết quả
+                                                Hiển thị <span class="fw-semibold">2</span> trong tổng số <span
+                                                    class="fw-semibold">20</span> kết quả
                                             </div>
                                         </div>
                                         <div class="col-sm-auto mt-3 mt-sm-0">
-                                            <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                                            <ul
+                                                class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
                                                 <li class="page-item disabled">
                                                     <a href="#" class="page-link">←</a>
                                                 </li>
@@ -447,14 +450,15 @@
                         <div class="col-xl-6">
                             <div class="card card-height-100">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Leading supplier</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">
+                                        Leading supplier
+                                    </h4>
                                     <div class="flex-shrink-0">
                                         <div class="dropdown card-header-dropdown">
-                                            <a class="text-reset dropdown-btn" href="#"
-                                               data-bs-toggle="dropdown" aria-haspopup="true"
-                                               aria-expanded="false">
-                        <span class="text-muted">Báo cáo<i
-                                class="mdi mdi-chevron-down ms-1"></i></span>
+                                            <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                                <span class="text-muted">Báo cáo<i
+                                                        class="mdi mdi-chevron-down ms-1"></i></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a class="dropdown-item" href="#">Tải báo cáo</a>
@@ -470,79 +474,63 @@
                                         <table class="table table-centered table-hover align-middle table-nowrap mb-0">
                                             <tbody>
 
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <img
-<<<<<<< HEAD
-                                                                src="{{ asset('backend/assets/imgs/brands/brand-1.jpg') }}"
-                                                                alt="Quần áo"
-                                                                class="avatar-sm p-2"/>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-2">
+                                                                <img src="{{ asset('backend/assets/imgs/brands/brand-1.jpg') }}"
+                                                                    alt="Quần áo" class="avatar-sm p-2" />
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">cardinal</span>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <span class="text-muted">Cardinal</span>
-=======
-
->>>>>>> d7ea7129afe5bf8d23431b972cd9042e701486fe
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0">100</p>
+                                                        <span class="text-muted">Tồn kho</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-muted">30.000.000 đ</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 mb-0">40%<i
+                                                                class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                        </h5>
+                                                    </td>
+                                                </tr><!-- end -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="flex-shrink-0 me-2">
+                                                                <img src="{{ asset('backend/assets/imgs/brands/brand-7.jpg') }}"
+                                                                    alt="Quần áo" class="avatar-sm p-2" />
+                                                            </div>
+                                                            <div>
+                                                                <span class="text-muted">JBV</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0">22</p>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">17.477.460đ</h5>
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 mb-0">40%<i
-                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                    </h5>
-                                                </td>
-                                            </tr><!-- end -->
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-<<<<<<< HEAD
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/brands/brand-2.jpg') }}"
-                                                                alt="Quần áo"
-                                                                class="avatar-sm p-2"/>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-muted">Goldsparrow</span>
-=======
-
->>>>>>> d7ea7129afe5bf8d23431b972cd9042e701486fe
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-<<<<<<< HEAD
-                                                    <p class="mb-0">100</p>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-muted">30.000.000 đ</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 mb-0">40%<i
-=======
-
->>>>>>> d7ea7129afe5bf8d23431b972cd9042e701486fe
-                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                    </h5>
-                                                </td>
-                                            </tr><!-- end -->
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0">100</p>
+                                                        <span class="text-muted">Tồn kho</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-muted">30.000.000 đ</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 mb-0">40%<i
+                                                                class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
+                                                        </h5>
+                                                    </td>
+                                                </tr><!-- end -->
 
                                             </tbody>
                                         </table><!-- end table -->
                                     </div>
 
-                                    <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+                                    <div
+                                        class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
                                         <div class="col-sm">
                                             <div class="text-muted">
                                                 Hiển thị <span class="fw-semibold">5</span> trong tổng số <span
@@ -550,7 +538,8 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-auto mt-3 mt-sm-0">
-                                            <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                                            <ul
+                                                class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
                                                 <li class="page-item disabled">
                                                     <a href="#" class="page-link">←</a>
                                                 </li>
@@ -598,14 +587,25 @@
     <!-- Dashboard init -->
     <script src="{{ asset('backend/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Giả sử bạn đã có dữ liệu cho một tháng
-            var data = [
-                { x: new Date('2024-07-01').getTime(), y: 10 },
-                { x: new Date('2024-07-02').getTime(), y: 15 },
-                { x: new Date('2024-07-03').getTime(), y: 12 },
+            var data = [{
+                    x: new Date('2024-07-01').getTime(),
+                    y: 10
+                },
+                {
+                    x: new Date('2024-07-02').getTime(),
+                    y: 15
+                },
+                {
+                    x: new Date('2024-07-03').getTime(),
+                    y: 12
+                },
                 // Thêm dữ liệu cho các ngày còn lại trong tháng
-                { x: new Date('2024-07-31').getTime(), y: 18 }
+                {
+                    x: new Date('2024-07-31').getTime(),
+                    y: 18
+                }
             ];
 
             var options = {
@@ -657,9 +657,8 @@
 @section('style-libs')
     <!-- jsvectormap css -->
     <link href="{{ asset('backend/assets/libs/jsvectormap/css/jsvectormap.min.css') }}" rel="stylesheet"
-          type="text/css"/>
+        type="text/css" />
 
     <!--Swiper slider css-->
-    <link href="{{ asset('backend/assets/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('backend/assets/libs/swiper/swiper-bundle.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-

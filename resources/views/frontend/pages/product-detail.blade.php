@@ -93,26 +93,19 @@
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                                         <div class="detail-extralink">
                                             <div class="border radius">
-                                                <input type="number" class="form-control input-sm qty-value" id="inputsm" value="1" min="1" max="{{ $product->stock }}">
+                                                <input type="number" class="form-control input-sm qty-value"
+                                                       id="inputsm"
+                                                       value="1">
                                             </div>
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart" id="addToCartButton">{{ __('frontend.Add to cart') }}</button>
+                                                <button type="submit" class="button button-add-to-cart">{{ __('frontend.Add to cart') }}
+                                                </button>
                                             </div>
                                         </div>
                                         <ul class="product-meta font-xs color-grey mt-50">
+                                            <li class="mb-5">SKU: <a href="#">{{$product->sku}}</a></li>
+                                            <li>{{ __('frontend.Availability') }}:<span class="in-stock text-success ml-5">8 {{ __('frontend.Item In Stock') }}</span></li>
                                         </ul>
-
-                                        <script>
-                                            document.getElementById('addToCartButton').addEventListener('click', function(event) {
-                                                let quantity = document.getElementById('inputsm').value;
-                                                let maxStock = {{ $product->stock }};
-
-                                                if (quantity > maxStock) {
-                                                    alert('{{ __("frontend.Quantity exceeds available stock") }}');
-                                                    event.preventDefault(); // Ngăn không cho gửi form
-                                                }
-                                            });
-                                        </script>
                                     </div>
                                     <!-- Detail Info -->
                                 </div>

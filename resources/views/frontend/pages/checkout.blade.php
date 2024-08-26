@@ -106,8 +106,7 @@
                                     </div>
                                     <div class="payment_option">
                                         <div class="custome-radio">
-                                            <select class="form-select" name="payment_method" id="payment_method">
-                                                <option value="none" selected>Chọn phương thức thanh toán</option>
+                                            <select class="form-select" name="payment_method">
                                                 <option value="VnPay">Vn Pay</option>
                                                 <option value="Ship cod">{{ __('frontend.Ship code') }}</option>
                                             </select>

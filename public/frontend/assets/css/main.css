@@ -5400,17 +5400,12 @@ h6.post-title {
 }
 
 .logo.logo-width-1 {
-  margin-right: 10px;
-}
+  margin-right: 23px;
+} 
 
 .logo.logo-width-1 .logo2 {
   width: 120px;
   min-width: 120px;
-}
-
-.custom-logo-size {
-    width: 80px; /* Điều chỉnh kích thước logo theo nhu cầu */
-    height: auto; /* Đảm bảo tỷ lệ không bị biến dạng */
 }
 
 .search-style-1 form {
