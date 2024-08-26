@@ -50,8 +50,13 @@ class ProductCategoryController extends Controller
             'parent_id' => $data['parent_id'] ?? null,
         ]);
 
+<<<<<<< HEAD
+       
+       
+=======
         toastr()->success(__('backend.Category created successfully'));
         return redirect()->route('admin.category.index');
+>>>>>>> 014bce88b2e27748a5af2241b3af8cf75518e3d6
     }
 
     /**
@@ -65,7 +70,7 @@ class ProductCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+
     {
         $category = ProductCategory::find($id);
         $categories = ProductCategory::with('children')->get();

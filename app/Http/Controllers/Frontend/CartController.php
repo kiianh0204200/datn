@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
@@ -19,7 +18,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        if (!auth()->user()) {
+        if (!auth()->check()) {
             return response()->json([
                 'success' => false,
                 'message' => __('frontend.Please login to continue!')
@@ -27,92 +26,103 @@ class CartController extends Controller
         }
 
         $product_id = $request->input('product_id');
-        $quantity = $request->input('quantity');
+        $quantity = (int) $request->input('quantity', 1); // Đảm bảo số lượng là số nguyên
         $color = $request->input('color');
         $size = $request->input('size');
 
-        $product = Product::where('id', $product_id)->first();
+        $product = Product::find($product_id);
 
         if (!$product) {
-            return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ']);
+
         }
 
-        $productOptionColor = ProductOption::query()
-            ->where('id', $color)
+        $productOptionColor = ProductOption::where('id', $color)
             ->orWhere('name', $color)
             ->where('type', 'color')
             ->first();
 
         if (!$productOptionColor) {
-            return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ']);
+
         }
 
-        $productOptionSize = ProductOption::query()
-            ->where('id', $size)
+        $productOptionSize = ProductOption::where('id', $size)
             ->where('type', 'size')
             ->first();
 
         if (!$productOptionSize) {
-            return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ']);
+
         }
 
-        $productOptionValue = ProductOptionValue::query()
-            ->where('product_id', $product->id)
+        $productOptionValue = ProductOptionValue::where('product_id', $product->id)
             ->where('size_id', $productOptionSize->id)
             ->where('color_id', $productOptionColor->id)
             ->first();
 
-        if ($productOptionValue->in_stock < $quantity) {
+        if (!$productOptionValue || $productOptionValue->in_stock < $quantity) {
             return response()->json(['success' => false, 'message' => __('frontend.Product is out of stock!')]);
         }
 
         // add the product to cart
-        Cart::add(array(
+        Cart::add([
             'id' => $product->id,
             'name' => $product->name,
             'price' => $this->price($productOptionValue->price, $product->discount),
             'qty' => $quantity,
-            'options' => array(
+            'options' => [
                 'size' => $productOptionSize->name,
                 'color' => $productOptionColor->name,
                 'image' => $product->thumbnail,
-            ),
-        ));
+            ],
+        ]);
 
         return response()->json(['success' => true, 'message' => __('frontend.Product added to cart!')]);
-
     }
 
     public function update(Request $request)
     {
-        if (!auth()->user()) {
+        if (!auth()->check()) {
             return response()->json([
                 'success' => false,
                 'message' => __('frontend.Please login to continue!')
             ], 403);
         }
 
-        $quantity = $request->input('qty');
+        $quantity = (int) $request->input('qty', 1); // Đảm bảo số lượng là số nguyên
         $cartId = $request->input('cartId');
-        // update the item on cart
-        $cart = Cart::update($cartId, array(
-            'qty' => $quantity,
-        ));
 
-        toastr()->success(__('frontend.Cart updated!'));
+        // Validate the quantity before updating
+        $cartItem = Cart::get($cartId);
+        if (!$cartItem) {
+            return response()->json(['success' => false, 'message' => __('frontend.Invalid cart item')]);
+        }
+
+        $productOptionValue = ProductOptionValue::where('product_id', $cartItem->id)
+            ->where('size_id', $cartItem->options->size)
+            ->where('color_id', $cartItem->options->color)
+            ->first();
+
+        if (!$productOptionValue || $productOptionValue->in_stock < $quantity) {
+            return response()->json(['success' => false, 'message' => __('frontend.Product is out of stock!')]);
+        }
+
+        // update the item in cart
+        Cart::update($cartId, [
+            'qty' => $quantity,
+        ]);
+
         return response()->json(['success' => true, 'message' => __('frontend.Cart updated!')]);
     }
 
     public function remove($id)
     {
-        if (!auth()->user()) {
+        if (!auth()->check()) {
             return response()->json([
                 'success' => false,
                 'message' => __('frontend.Please login to continue!')
             ], 403);
         }
 
-        // remove the item on cart
+        // remove the item from the cart
         Cart::remove($id);
 
         return response()->json([
@@ -123,7 +133,7 @@ class CartController extends Controller
 
     public function clear()
     {
-        if (!auth()->user()) {
+        if (!auth()->check()) {
             return response()->json([
                 'success' => false,
                 'message' => __('frontend.Please login to continue!')
@@ -131,7 +141,7 @@ class CartController extends Controller
         }
 
         // clear the cart
-        session()->forget('cart');
+        Cart::destroy();
 
         return response()->json([
             'success' => true,

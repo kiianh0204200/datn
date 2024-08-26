@@ -7,7 +7,8 @@
         </div>
         <div class="col-sm-6">
             <div class="text-sm-end">
-                All rights reserved
+                <p class=""> <strong
+                        class="text-brand">WD-11</strong> - Website bán hàng thời trang Golden Era  </p>
             </div>
         </div>
     </div>
