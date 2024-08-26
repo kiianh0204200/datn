@@ -65,9 +65,7 @@
     <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="header-wrap">
-                <div class="logo logo-width-1">
-                    <a href="{{route('frontend.home')}}" class="d-flex">
-                        <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid" alt="Golden Era">
+
                     </a>
                 </div>
                 <div class="header-right">
@@ -248,8 +246,10 @@
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
         <div class="mobile-header-top">
-            <div class="mobile-header-logo">
-                <a href="={{route('frontend.home')}}">Golden Era</a>
+            <div class="logo mx-auto my-3">
+                <a href="{{ route('frontend.home') }}" class="d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid w-25" alt="Golden Era">
+                </a>
             </div>
             <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                 <button class="close-style search-close">

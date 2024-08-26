@@ -6,14 +6,14 @@
 <body>
 <div class="screen-overlay"></div>
 <aside class="navbar-aside" id="offcanvas_aside">
-    <div class="aside-top">
-        <a href="{{route('admin.home')}}" class="brand-wrap">
-            <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="logo img-fluid" alt="Golden Era">
         </a>
-        <div>
-            <button class="btn btn-icon btn-aside-minimize"><i class="text-muted material-icons md-menu_open"></i>
-            </button>
-        </div>
+        <button class="btn btn-icon btn-aside-minimize ms-auto">
+            <i class="text-muted material-icons md-menu_open"></i>
+        </button>
+    </div>
+
+
+    </div>
     </div>
     @include('backend.layouts.nav')
 </aside>

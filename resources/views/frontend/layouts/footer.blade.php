@@ -32,9 +32,12 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="widget-about font-md mb-md-5 mb-lg-0">
-                        <div class="logo logo-width-1 wow fadeIn animated">
-                            <a href="index.html">Golden Era</a>
+                        <div class="logo mx-auto my-3">
+                            <a href="{{ route('frontend.home') }}" class="d-flex justify-content-center align-items-center" style="margin-left: -200px;">
+                                <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid w-25" alt="Golden Era">
+                            </a>
                         </div>
+
                         <h5 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">{{ __('frontend.Contact') }}</h5>
                         <p class="wow fadeIn animated">
                             <strong>{{ __('frontend.Address') }}: </strong>123 Tran Duy Hung Road, Ha noi, Viet Nam
@@ -118,8 +121,8 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-lg-6">
-                <p class="float-md-left font-sm text-muted mb-0">&copy; 2023, <strong
-                        class="text-brand">Hung Phan</strong> - Evara Ecommerce </p>
+                <p class="float-md-left font-sm text-muted mb-0">&copy; 2024, <strong
+                        class="text-brand">WD-11</strong> - Website bán hàng thời trang Golden Era  </p>
             </div>
             <div class="col-lg-6">
                 <p class="text-lg-end text-start font-sm text-muted mb-0">
