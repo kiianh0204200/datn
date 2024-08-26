@@ -53,6 +53,6 @@ use Spatie\Permission\Traits\HasRoles;
 
     public function order(): HasMany
     {
-        return $this->hasMany(Order::class, 'order_id');
+        return $this->hasMany(Order::class, 'user_id', 'id');
     }
 }

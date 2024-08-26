@@ -44,26 +44,21 @@ class ProductDetailsController extends Controller
 
     public function getPriceBySize(Request $request)
     {
-        $price = ProductOptionValue::query()
+        $productOptionValue = ProductOptionValue::query()
             ->where('product_id', $request->product_id)
             ->where('size_id', $request->size_id)
             ->first();
+        if (!$productOptionValue || $productOptionValue->in_stock <= 0) {
+            return response()->json([
+                'data' => $productOptionValue,
+                'status' => false,
+                'message' => __('frontend.Product is out of stock!')
+            ], 400);  // Bạn có thể sử dụng mã 400 nếu muốn thông báo là lỗi người dùng
+        }
         return response()->json([
-            'data' => $price,
+            'data' => $productOptionValue,
             'status' => true,
             'message' => 'success'
         ], 200);
     }
-    // public function getPriceBySize(Request $request)
-    // {
-    //     $price = ProductOptionValue::query()
-    //         ->where('product_id', $request->product_id)
-    //         ->where('size_id', $request->size_id)
-    //         ->first();
-    //     return response()->json([
-    //         'data' => $price,
-    //         'status' => true,
-    //         'message' => 'success'
-    //     ], 200);
-    // }
 }

@@ -109,8 +109,4 @@ class BrandController extends Controller
         }
         return $slug;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b

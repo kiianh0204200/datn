@@ -11,139 +11,6 @@
         }
     </script>
 @endpush
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetch('{{ route('admin.homes.chart-data') }}')
-                .then(response => response.json())
-                .then(data => {
-                    var ctx = document.getElementById('combinedChart').getContext('2d');
-                    var combinedChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: data.labels,
-                            datasets: [
-                                {
-                                    label: 'Số lượng sản phẩm',
-                                    data: data.productCounts,
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    fill: true,
-                                    yAxisID: 'y1'
-                                },
-                                {
-                                    label: 'Số lượng đơn hàng',
-                                    data: data.orderCounts,
-                                    borderColor: 'rgba(54, 162, 235, 1)',
-                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                    fill: true,
-                                    yAxisID: 'y1'
-                                },
-                                {
-                                    label: 'Doanh thu',
-                                    data: data.revenues,
-                                    borderColor: 'rgba(255, 99, 132, 1)',
-                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                    fill: true,
-                                    yAxisID: 'y2'
-                                }
-                            ]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                tooltip: {
-                                    mode: 'index',
-                                    intersect: false,
-                                }
-                            },
-                            hover: {
-                                mode: 'nearest',
-                                intersect: true
-                            },
-                            scales: {
-                                x: {
-                                    display: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Tháng'
-                                    }
-                                },
-                                y: {
-                                    display: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Số lượng'
-                                    },
-                                    beginAtZero: true,
-                                    position: 'left',
-                                    id: 'y1'
-                                },
-                                y2: {
-                                    display: true,
-                                    title: {
-                                        display: true,
-                                        text: 'Doanh thu'
-                                    },
-                                    beginAtZero: true,
-                                    position: 'right',
-                                    id: 'y2'
-                                }
-                            }
-                        }
-                    });
-                });
-
-            fetch('{{ route('admin.orders.status-chart-data') }}')
-                .then(response => response.json())
-                .then(data => {
-                    var statusLabels = data.map(stat => stat.status);
-                    var statusCounts = data.map(stat => stat.total);
-                    
-                    var ctx = document.getElementById('orderStatusChart').getContext('2d');
-                    var orderStatusChart = new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: statusLabels,
-                            datasets: [{
-                                label: 'Trạng thái đơn hàng',
-                                data: statusCounts,
-                                backgroundColor: [
-                                    'rgba(255, 99, 132, 0.2)',
-                                    'rgba(54, 162, 235, 0.2)',
-                                    'rgba(255, 206, 86, 0.2)',
-                                    'rgba(75, 192, 192, 0.2)'
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132, 1)',
-                                    'rgba(54, 162, 235, 1)',
-                                    'rgba(255, 206, 86, 1)',
-                                    'rgba(75, 192, 192, 1)'
-                                ],
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                tooltip: {
-                                    mode: 'index',
-                                    intersect: false,
-                                }
-                            },
-                        }
-                    });
-                });
-        });
-    </script>
-@endpush
 @section('content')
     <form action="{{route('admin.home')}}" method="GET">
         <div class="row">
@@ -154,7 +21,7 @@
                         <div class="col-12">
                             <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                 <div class="flex-grow-1">
-                                    <h4 class="fs-16 mb-1">Good Morning, Anna!</h4>
+                                    <h4 class="fs-16 mb-1">Chào mừng bạn đã đến với chúng tôi!</h4>
                                     <p class="text-muted mb-0">Here's what's happening with your store today.</p>
                                 </div>
                                 <div class="mt-3 mt-lg-0">
@@ -385,12 +252,12 @@
                                 <div class="card-body">
                                     <div id="sales-by-locations" data-colors='["--vz-light", "--vz-success", "--vz-primary"]' style="height: 269px" dir="ltr"></div>
                                     <div class="px-2 py-2 mt-1">
-                                        <p class="mb-1">Hồ Chí Minh <span class="float-end">45%</span></p>
+                                        <p class="mb-1">Hà Nội <span class="float-end">45%</span></p>
                                         <div class="progress mt-2" style="height: 6px;">
                                             <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
                                         </div>
 
-                                        <p class="mt-3 mb-1">Hà Nội <span class="float-end">30%</span></p>
+                                        <p class="mt-3 mb-1">Hồ Chí Minh <span class="float-end">30%</span></p>
                                         <div class="progress mt-2" style="height: 6px;">
                                             <div class="progress-bar progress-bar-striped bg-primary" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30"></div>
                                         </div>
@@ -442,7 +309,7 @@
                         <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Sản phẩm bán chạy nhất</h4>
                                     <div class="flex-shrink-0">
                                         <div class="dropdown card-header-dropdown">
                                             <a class="text-reset dropdown-btn" href="#"
@@ -473,61 +340,30 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                            <img
-<<<<<<< HEAD
-                                                                src="{{ asset('backend/assets/imgs/items/224.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"/>
+                                                            <img src="{{ asset('backend/assets/imgs/items/13.jpg') }}" alt="Hình ảnh sản phẩm" class="img-fluid d-block" style="width: 150px; height: auto;"/>
                                                         </div>
                                                         <div>
                                                             <h5 class="fs-14 my-1"><a
                                                                     href="product-details.html"
-                                                                    class="text-reset">Áo Adidas</a></h5>
-=======
-                                                                src="{{ asset('backend/assets/imgs/items/5.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="http://127.0.0.1:8000/product-detail/26"
-                                                                    class="text-reset">September Cobb</a></h5>
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+                                                                    class="text-reset">Sonia Gilliam T-Shirts</a></h5>
                                                             <span class="text-muted">01 Tháng 8, 2024</span>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-<<<<<<< HEAD
-                                                    <h5 class="fs-14 my-1 fw-normal">500.000đ</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">601.710đ</h5>
                                                     <span class="text-muted">Giá</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">120</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">99</h5>
                                                     <span class="text-muted">Đơn hàng</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">300</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">0</h5>
                                                     <span class="text-muted">Tồn kho</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">60.000.000đ</h5>
-=======
-                                                    <h5 class="fs-14 my-1 fw-normal">190.080đ</h5>
-                                                    <span class="text-muted">Giá</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">2</h5>
-                                                    <span class="text-muted">Đơn hàng</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">8</h5>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">400.000đ</h5>
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+                                                    <h5 class="fs-14 my-1 fw-normal">56.560.740 đ</h5>
                                                     <span class="text-muted">Tổng tiền</span>
                                                 </td>
                                             </tr>
@@ -537,138 +373,34 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="avatar-sm bg-light rounded p-1 me-2">
                                                             <img
-<<<<<<< HEAD
-                                                                src="{{ asset('backend/assets/imgs/items/331.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"/>
+                                                                src="{{ asset('backend/assets/imgs/items/1.jpg') }}"
+                                                                alt="Hình ảnh sản phẩm" class="img-fluid d-block" style="width: 150px; height: auto;"/>
                                                         </div>
                                                         <div>
                                                             <h5 class="fs-14 my-1"><a
                                                                     href="product-details.html"
-                                                                    class="text-reset">Quần Nike</a></h5>
-=======
-                                                                src="{{ asset('backend/assets/imgs/items/6.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"
-                                                            style="width: 150px; height: 150px;" />
-
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="http://127.0.0.1:8000/product-detail/6"
-                                                                    class="text-reset">Sandan Colorful AB</a></h5>
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+                                                                    class="text-reset"> Colorful Hawaiian Shirts</a></h5>
                                                             <span class="text-muted">05 Tháng 8, 2024</span>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-<<<<<<< HEAD
-                                                    <h5 class="fs-14 my-1 fw-normal">450.000đ</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">226.980đ</h5>
                                                     <span class="text-muted">Giá</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">80</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">66</h5>
                                                     <span class="text-muted">Đơn hàng</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">150</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">22</h5>
                                                     <span class="text-muted">Tồn kho</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">36.000.000đ</h5>
+                                                    <h5 class="fs-14 my-1 fw-normal">14.980.680đ</h5>
                                                     <span class="text-muted">Tổng tiền</span>
                                                 </td>
                                             </tr>
-=======
-                                                    <h5 class="fs-14 my-1 fw-normal">113.490đ</h5>
-                                                    <span class="text-muted">Giá</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">1</h5>
-                                                    <span class="text-muted">Đơn hàng</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">44</h5>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">4.993.560đ</h5>
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/2.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="http://127.0.0.1:8000/product-detail/11"
-                                                                    class="text-reset">Daisy Floral Print Straps</a></h5>
-                                                            <span class="text-muted">01 Tháng 8, 2024</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">106.560đ</h5>
-                                                    <span class="text-muted">Giá</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">2</h5>
-                                                    <span class="text-muted">Đơn hàng</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">55</h5>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">5.500.000đ</h5>
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/16.jpg') }}"
-                                                                alt="Hình ảnh sản phẩm"
-                                                                class="img-fluid d-block"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-                                                        <div>
-                                                            <h5 class="fs-14 my-1"><a
-                                                                    href="http://127.0.0.1:8000/product-detail/16"
-                                                                    class="text-reset">Jumpsuits Susan AC</a></h5>
-                                                            <span class="text-muted">01 Tháng 8, 2024</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">330.240đ</h5>
-                                                    <span class="text-muted">Giá</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">0</h5>
-                                                    <span class="text-muted">Đơn hàng</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">27</h5>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 my-1 fw-normal">0đ</h5>
-                                                    <span class="text-muted">Tổng tiền</span>
-                                                </td>
-                                            </tr>
-
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
                                             <!-- Thêm các hàng sản phẩm khác nếu cần -->
                                             </tbody>
                                         </table>
@@ -735,35 +467,21 @@
                                                     <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-2">
                                                             <img
-<<<<<<< HEAD
-                                                                src="{{ asset('backend/assets/imgs/items/999.jpg') }}"
-                                                                alt="Quần áo"
-                                                                class="avatar-sm p-2"/>
+                                                                src="{{ asset('backend/assets/imgs/items/15.jpg') }}"
+                                                                alt="Hình ảnh thương hiệu" class="img-fluid d-block" style="width: 200px; height: auto;"/>
                                                         </div>
                                                         <div>
-                                                            <span class="text-muted">Nike</span>
-=======
-                                                                src="{{ asset('backend/assets/imgs/items/9.jpg') }}"
-                                                                alt="Giày"
-                                                                class="avatar-sm p-2"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-muted">Janice Denesik</span>
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+                                                            <span class="text-muted">Shirts</span>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0">100</p>
+                                                    <p class="mb-0">22</p>
                                                     <span class="text-muted">Tồn kho</span>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted">30.000.000 đ</span>
+                                                    <h5 class="fs-14 my-1 fw-normal">17.477.460đ</h5>
+                                                    <span class="text-muted">Tổng tiền</span>
                                                 </td>
                                                 <td>
                                                     <h5 class="fs-14 mb-0">40%<i
@@ -774,127 +492,30 @@
                                             <tr>
                                                 <td>
                                                     <div class="d-flex align-items-center">
-<<<<<<< HEAD
-                                                        <div>
-                                                            <span class="text-muted">Adidas</span>
-=======
                                                         <div class="flex-shrink-0 me-2">
                                                             <img
-                                                                src="{{ asset('backend/assets/imgs/items/8.jpg') }}"
-                                                                alt="Quần"
-                                                                class="avatar-sm p-2"
-                                                                style="width: 150px; height: 150px;" />
+                                                                src="{{ asset('backend/assets/imgs/items/14.png') }}"
+                                                                alt="Hình ảnh thương hiệu" class="img-fluid d-block" style="width: 200px; height: auto;"/>
                                                         </div>
-
                                                         <div>
-                                                            <span class="text-muted">Prof. Elisa Durgan MD</span>
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+                                                            <span class="text-muted">T-Shirts</span>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="mb-0">100</p>
+                                                    <p class="mb-0">47</p>
                                                     <span class="text-muted">Tồn kho</span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-muted">20.000.000 đ</span>
+                                                    <h5 class="fs-14 my-1 fw-normal">23.500.000đ</h5>
+                                                    <span class="text-muted">Tổng tiền</span>
                                                 </td>
                                                 <td>
-                                                    <h5 class="fs-14 mb-0">57%<i
+                                                    <h5 class="fs-14 mb-0">30%<i
                                                             class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
                                                     </h5>
                                                 </td>
                                             </tr><!-- end -->
-<<<<<<< HEAD
-=======
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/12.jpg') }}"
-                                                                alt="Mũ"
-                                                                class="avatar-sm p-2"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-
-                                                        <div>
-                                                            <span class="text-muted">Dulce Thompson</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0">70</p>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-muted">10.000.000 đ</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 mb-0">57%<i
-                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                    </h5>
-                                                </td>
-                                            </tr><!-- end -->
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/10.jpg') }}"
-                                                                alt="Túi Sách"
-                                                                class="avatar-sm p-2"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-
-                                                        <div>
-                                                            <span class="text-muted">Frederic Medhurst</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0">80</p>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-muted">15.000.000 đ</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 mb-0">57%<i
-                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                    </h5>
-                                                </td>
-                                            </tr><!-- end -->
-                                            <tr>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <img
-                                                                src="{{ asset('backend/assets/imgs/items/6.jpg') }}"
-                                                                alt="Dép"
-                                                                class="avatar-sm p-2"
-                                                                style="width: 150px; height: 150px;" />
-                                                        </div>
-
-                                                        <div>
-                                                            <span class="text-muted">Dr. Rozella Schowalter</span>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0">90</p>
-                                                    <span class="text-muted">Tồn kho</span>
-                                                </td>
-                                                <td>
-                                                    <span class="text-muted">25.000.000 đ</span>
-                                                </td>
-                                                <td>
-                                                    <h5 class="fs-14 mb-0">57%<i
-                                                            class="ri-bar-chart-fill text-success fs-16 align-middle ms-2"></i>
-                                                    </h5>
-                                                </td>
-                                            </tr><!-- end -->
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 
                                             </tbody>
                                         </table><!-- end table -->
@@ -940,10 +561,6 @@
 
         </div>
     </form>
-<<<<<<< HEAD
-=======
-
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 @endsection
 
 @section('script-libs')
