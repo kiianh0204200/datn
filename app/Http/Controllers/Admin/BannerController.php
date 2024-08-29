@@ -104,5 +104,3 @@ class BannerController extends Controller
         return redirect()->route('admin.banner.index');
     }
 }
-$banner = Banner::findOrFail($id);
-$banner->delete();
