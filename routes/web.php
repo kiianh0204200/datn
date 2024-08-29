@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\BlogController;
@@ -33,6 +34,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -85,6 +87,14 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit')->middleware(['permission:update banner management']);
             Route::patch('/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
             Route::get('/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy')->middleware(['permission:delete banner management']);
+        });
+        Route::group(['prefix' => 'voucher'], function () {
+            Route::get('/', [VoucherController::class, 'index'])->name('admin.voucher.index')->middleware(['permission:read voucher management']);
+            Route::get('/create', [VoucherController::class, 'create'])->name('admin.voucher.create')->middleware(['permission:create voucher management']);
+            Route::post('/', [VoucherController::class, 'store'])->name('admin.voucher.store');
+            Route::get('/edit/{id}', [VoucherController::class, 'edit'])->name('admin.voucher.edit')->middleware(['permission:update voucher management']);
+            Route::patch('/{id}', [VoucherController::class, 'update'])->name('admin.voucher.update');
+            Route::get('/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy')->middleware(['permission:delete voucher management']);
         });
 
         Route::group(['prefix' => 'brand'], function () {

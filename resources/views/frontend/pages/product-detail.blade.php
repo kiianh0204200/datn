@@ -88,6 +88,7 @@
                                                 <li><a href="#" data-size="">L</a></li>
                                                 <li><a href="#" data-size="">XL</a></li>
                                                 <li><a href="#" data-size="">XXL</a></li>
+                                                <li><a href="#" data-size="">4XL</a></li>
                                             </ul>
                                         </div>
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
