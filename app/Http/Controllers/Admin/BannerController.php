@@ -106,5 +106,3 @@ class BannerController extends Controller
 }
 $banner = Banner::findOrFail($id);
 $banner->delete();
-toastr()->success(__('backend.Banner deleted successfully'));
-return redirect()->route('admin.banner.index');
