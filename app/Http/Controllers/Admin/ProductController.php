@@ -76,6 +76,9 @@ class ProductController extends Controller
             $this->createProductImage($product, $data);
         }
 
+
+        
+
         toastr()->success(__('backend.Product created successfully'));
         return redirect()->route('admin.product.index');
     }

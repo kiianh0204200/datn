@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-9">
                 <div class="content-header">
-                    <h2 class="content-title">{{ __('backend.Add New Brand') }}</h2>
+                    <h2 class="content-title">{{ __('backend.Add New Voucher') }}</h2>
                     <div>
                         <button type="submit" class="btn btn-md rounded font-sm hover-up">{{ __('backend.Publish') }}</button>
                     </div>

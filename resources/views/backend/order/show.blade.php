@@ -163,6 +163,10 @@
                                                 <dd>0</dd>
                                             </dl>
                                             <dl class="dlist">
+                                                <dt>{{ __('voucher') }}:</dt>
+                                                <dd><b class="h5">-{{number_format($order->discount_amount, 0, '', ',')}}</b></dd>
+                                            </dl>
+                                            <dl class="dlist">
                                                 <dt>{{ __('frontend.Total') }}:</dt>
                                                 <dd><b class="h5">{{number_format($order->total, 0, '', ',')}}</b></dd>
                                             </dl>

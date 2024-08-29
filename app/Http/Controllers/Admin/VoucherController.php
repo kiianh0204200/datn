@@ -40,34 +40,9 @@ class VoucherController extends Controller
             'min_order_value' => $data['min_order_value']?? null,
         ]);
 
-        if (!empty($validatedData['voucher_code'])) {
-            $voucher = Voucher::where('code', $validatedData['voucher_code'])->first();
-
-            if ($voucher && $voucher->isValid()) {
-                // Áp dụng giảm giá từ voucher vào giá sản phẩm
-                $validatedData['price'] = $this->applyVoucherDiscount($voucher, $validatedData['price']);
-            } else {
-                return redirect()->back()->withErrors(['voucher_code' => 'Voucher không hợp lệ hoặc đã hết hạn']);
-            }
-        }
-
-        Product::create($validatedData);
-
+        
         toastr()->success(__('Voucher created successfully'));
         return redirect()->route('admin.voucher.index');
-    }
-
-    // Hàm tính toán giá sau khi áp dụng voucher
-    protected function applyVoucherDiscount(Voucher $voucher, $price)
-    {
-        if ($voucher->discount_type === 'percentage') {
-            return $price * (1 - $voucher->discount_value / 100);
-        }
-
-        return max(0, $price - $voucher->discount_value);
-    }
-
-       
         
     }
 
@@ -88,11 +63,7 @@ class VoucherController extends Controller
         $data = $request->safe()->all();
         $voucher = Voucher::findOrFail($id);
 
-        if (isset($data['image'])) {
-            $data['image'] = Files::upload($data['image'], 'voucher');
-        } else {
-            $data['image'] = $voucher->image;
-        }
+      
 
         $voucher->update($data);
 
@@ -108,4 +79,47 @@ class VoucherController extends Controller
         toastr()->success(__('Voucher deleted successfully'));
         return redirect()->route('admin.voucher.index');
     }
+
+    // Phương thức áp dụng voucher
+    // app/Http/Controllers/VoucherController.php
+
+public function applyVoucher(Request $request)
+{
+    
+    $voucherCode = $request->input('voucher_code');
+    
+    \Log::info('Voucher code received: ' . $voucherCode);
+    if (empty($voucherCode)) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Voucher code is required.'
+        ]);
+    }
+    $voucher = Voucher::where('code', $voucherCode)->first();
+
+    if (!$voucher) {
+        \Log::info('Voucher not found: ' . $voucherCode);
+    } elseif (!$voucher->isValid()) {
+        \Log::info('Voucher is invalid or expired: ' . $voucherCode);
+    }
+
+    if ($voucher && $voucher->isValid()) {
+        // Tính toán giảm giá
+        $discountAmount = $voucher->discount_value;
+        $totalAmount = \Cart::subTotal() - $discountAmount;
+
+        return response()->json([
+            'success' => true,
+            'discount_amount' => $discountAmount,
+            'total_amount' => formatPrice($totalAmount)
+        ]);
+    }
+
+    return response()->json([
+        'success' => false,
+        'message' => 'Invalid or expired voucher code.'
+    ]);
+}
+
+
 }

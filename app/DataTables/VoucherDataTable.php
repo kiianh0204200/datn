@@ -92,6 +92,8 @@ class VoucherDataTable extends DataTable
             'code' => ['data' => 'code', 'name' => 'code', 'title' => 'Voucher Mã'],
             'description' => ['data' => 'description', 'name' => 'description', 'title' => 'Mô Tẩ'],
             'discount_type' => ['data' => 'discount_type', 'name' => 'discount_type', 'title' => 'Loại Voucher'],
+            'voucher_quantity' => ['data' => 'voucher_quantity', 'name' => 'voucher_quantity', 'title' => 'Số Lương'],
+
             'discount_value' => ['data' => 'discount_value', 'name' => 'discount_value', 'title' => 'Giá trị Giảm'],
             'min_order_value' => ['data' => 'min_order_value', 'name' => 'min_order_value', 'title' => 'Đơn Hầng Tối Thiểu'],
             'start_date' => ['data' => 'start_date', 'name' => 'start_date', 'title' => 'Ngày bắt đầu'],

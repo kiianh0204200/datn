@@ -32,7 +32,7 @@ class Voucher extends Model
 
     public function isValid()
     {
-        return $this->status === 'active' && 
+        return $this->status === 1 && 
                $this->start_date <= now() && 
                $this->end_date >= now();
     }

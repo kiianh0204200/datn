@@ -89,6 +89,11 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy')->middleware(['permission:delete banner management']);
         });
         Route::group(['prefix' => 'voucher'], function () {
+            // routes/web.php
+
+
+// Route để xử lý việc áp dụng voucher
+            Route::post('/voucher/apply', [VoucherController::class, 'applyVoucher'])->name('voucher.apply');
             Route::get('/', [VoucherController::class, 'index'])->name('admin.voucher.index')->middleware(['permission:read voucher management']);
             Route::get('/create', [VoucherController::class, 'create'])->name('admin.voucher.create')->middleware(['permission:create voucher management']);
             Route::post('/', [VoucherController::class, 'store'])->name('admin.voucher.store');
@@ -230,7 +235,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
 });
 
 Route::get('/payment-return', [CheckoutController::class, 'paymentReturn'])->name('frontend.checkout.vnpay');
-
+Route::post('/cart/apply-voucher', [CartController::class, 'applyVoucher'])->name('cart.apply-voucher');
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth:web')->name('cart');
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
