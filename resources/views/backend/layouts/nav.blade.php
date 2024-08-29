@@ -14,7 +14,14 @@
                 </a>
             </li>
         @endcan
-
+        @can('read voucher management')
+        <li class="menu-item {{ request()->is('admin/voucher') ? 'active' : '' }}">
+            <a class="menu-link" href="{{ route('admin.voucher.index') }}">
+                <i class="icon material-icons md-card_giftcard"></i>
+                <span class="text">{{ __('backend.Voucher Management') }}</span>
+            </a>
+        </li>
+    @endcan    
         @can('read brand management')
             <li class="menu-item {{request()->is('admin/brand') ? 'active' : ''}}">
                 <a class="menu-link" href="{{route('admin.brand.index')}}"> <i

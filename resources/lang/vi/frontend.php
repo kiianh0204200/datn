@@ -231,4 +231,5 @@ return array (
     'Page Not Found' => 'Không tìm thấy trang',
     'The link you clicked may be broken or the page may have been removed.' => 'Liên kết bạn đã nhấp có thể bị hỏng hoặc trang có thể đã bị xóa.',
     'Back To Home Page' => 'Trở lại trang chủ',
+   
 );

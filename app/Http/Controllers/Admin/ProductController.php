@@ -24,6 +24,7 @@ class ProductController extends Controller
      */
     public function index(ProductDataTable $productDataTable)
     {
+        
         return $productDataTable->render('backend.product.index');
     }
 
@@ -32,6 +33,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+
+   
         $brands = Brand::get();
         $categories = ProductCategory::get();
         $colors = ProductOption::where('type', 'color')->get();
