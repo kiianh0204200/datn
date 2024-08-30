@@ -53,9 +53,14 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="min_order_value">Giá trị đơn hàng tối thiểu</label>
-            <input type="number" class="form-control" id="min_order_value" name="min_order_value" step="0.01">
+            <label for="voucher_quantity">Số Lượng</label>
+            <input type="number" class="form-control" id="voucher_quantity" name="voucher_quantity" step="1">
         </div>
+        <div class="form-group">
+            <label for="min_order_value">Giá trị đơn hàng tối thiểu</label>
+            <input type="number" class="form-control" id="min_order_value" name="min_order_value" step="1">
+        </div>
+
         <div class="form-group">
             <label for="start_date">Start Date</label>
             <input type="date" class="form-control" id="start_date" name="start_date" required>

@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\ProductOption;
 use App\Models\ProductOptionValue;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -63,17 +64,33 @@ class OrderController extends Controller
             'order_status' => ['required_without:payment_status', 'string', 'max:255'],
             'payment_status' => ['required_without:order_status', 'string', 'max:255'],
         ]);
-
+    
         $order = Order::findOrFail($id);
         $order->update([
             'order_status' => $data['order_status'] ?? $order->order_status,
             'payment_status' => $data['payment_status'] ?? $order->payment_status,
         ]);
-
-        // Update quantity product when order status is cancel
+    
+        // Trừ số lượng voucher nếu đơn hàng hoàn thành
+        if ($request->input('order_status') === 'completed') {
+            // Giả sử bạn có mã voucher trong `order`
+            $voucherCode = $order->voucher_code; // Thay đổi logic này tùy theo cấu trúc bảng của bạn
+            $voucher = Voucher::where('code', $voucherCode)->first();
+    
+            if ($voucher) {
+                if ($voucher->voucher_quantity > 0) {
+                    $voucher->decrement('voucher_quantity', 1);
+                } else {
+                    toastr()->warning('Số lượng voucher đã hết');
+                }
+            } else {
+                toastr()->error('Không tìm thấy voucher');
+            }
+        }
+    
+        // Cập nhật số lượng sản phẩm khi hủy đơn hàng
         if ($request->input('order_status') === 'cancel') {
             $orderDetails = OrderDetail::where('order_id', $order->id)->get();
-            // Update quantity product
             foreach ($orderDetails as $orderDetail) {
                 $color = ProductOption::where('name', $orderDetail->color)->first();
                 $size = ProductOption::where('name', $orderDetail->size)->first();
@@ -84,11 +101,11 @@ class OrderController extends Controller
                     ->increment('in_stock', $orderDetail->quantity);
             }
         }
-
+    
         toastr()->success('Cập nhật trạng thái đơn hàng thành công');
         return back();
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */

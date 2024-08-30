@@ -38,7 +38,6 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="mb-4">
                             <label class="form-label">{{ __('backend.discount_type') }}</label>
                             <select class="form-select @error('discount_type') is-invalid @enderror" name="discount_type">
@@ -58,7 +57,14 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
+                        <div class="mb-4">
+                            <label class="form-label">{{ __('Số Lượng') }}</label>
+                            <input type="number" class="form-control @error('voucher_quantity') is-invalid @enderror" name="voucher_quantity"
+                                   value="{{ old('voucher_quantity') ?? $voucher->voucher_quantity }}" step="0.01"/>
+                            @error('voucher_quantity')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>   
                         <div class="mb-4">
                             <label class="form-label">{{ __('backend.Min Order Value') }}</label>
                             <input type="number" class="form-control @error('min_order_value') is-invalid @enderror" name="min_order_value"

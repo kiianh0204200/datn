@@ -32,13 +32,15 @@ class VoucherController extends Controller
             'code' => $data['code'] ,
             'description' => $data['description'],
             'discount_type' => $data['discount_type'],
+            'voucher_quantity' => $data['voucher_quantity'],
             'discount_value' => $data['discount_value'] ?? null,
             'usage_limit' => $data['usage_limit'] ?? null,
             'start_date' => $data['start_date'] ?? null,
-            'end_date' => $data['end_date'],
+            'end_date' => $data['end_date']?? null,
             'status' => $data['status']?? null,
             'min_order_value' => $data['min_order_value']?? null,
         ]);
+   
 
         
         toastr()->success(__('Voucher created successfully'));
@@ -83,43 +85,52 @@ class VoucherController extends Controller
     // Phương thức áp dụng voucher
     // app/Http/Controllers/VoucherController.php
 
-public function applyVoucher(Request $request)
-{
+    public function applyVoucher(Request $request)
+    {
+        $voucherCode = $request->input('voucher_code');
+        
+        \Log::info('Voucher code received: ' . $voucherCode);
     
-    $voucherCode = $request->input('voucher_code');
+        // Kiểm tra nếu mã voucher không được nhập
+        if (empty($voucherCode)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Voucher code is required.' // Voucher code is required
+            ]);
+        }
     
-    \Log::info('Voucher code received: ' . $voucherCode);
-    if (empty($voucherCode)) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Voucher code is required.'
-        ]);
-    }
-    $voucher = Voucher::where('code', $voucherCode)->first();
-
-    if (!$voucher) {
-        \Log::info('Voucher not found: ' . $voucherCode);
-    } elseif (!$voucher->isValid()) {
-        \Log::info('Voucher is invalid or expired: ' . $voucherCode);
-    }
-
-    if ($voucher && $voucher->isValid()) {
-        // Tính toán giảm giá
+        // Tìm voucher trong cơ sở dữ liệu
+        $voucher = Voucher::where('code', $voucherCode)->first();
+    
+        // Kiểm tra nếu mã voucher không tồn tại
+        if (!$voucher) {
+            \Log::info('Voucher not found: ' . $voucherCode);
+            return response()->json([
+                'success' => false,
+                'message' => 'Voucher không tồn tại .' // Voucher code does not exist
+            ]);
+        }
+    
+        // Kiểm tra nếu mã voucher đã hết hạn hoặc không hợp lệ
+        if (!$voucher->isValid()) {
+            \Log::info('Voucher is invalid or expired: ' . $voucherCode);
+            return response()->json([
+                'success' => false,
+                'message' => 'Voucher đã hết hạn.' // Voucher code is expired
+            ]);
+        }
+    
+        // Nếu mã voucher hợp lệ, tiến hành tính toán giảm giá
         $discountAmount = $voucher->discount_value;
         $totalAmount = \Cart::subTotal() - $discountAmount;
-
+    
         return response()->json([
             'success' => true,
             'discount_amount' => $discountAmount,
             'total_amount' => formatPrice($totalAmount)
         ]);
     }
-
-    return response()->json([
-        'success' => false,
-        'message' => 'Invalid or expired voucher code.'
-    ]);
-}
+    
 
 
 }

@@ -18,6 +18,7 @@ class StoreVoucherRequest extends FormRequest
             'end_date' => 'required|date|after_or_equal:start_date',
             'status' => 'required|boolean',
             'usage_limit' => 'nullable|integer',
+            'voucher_quantity' => 'nullable|integer',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }

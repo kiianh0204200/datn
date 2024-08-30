@@ -11,8 +11,8 @@ class Voucher extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code', 'description', 'discount_type', 'discount_value', 
-        'min_order_value', 'start_date', 'end_date', 'status', 'usage_limit'
+        'code', 'description','voucher_quantity', 'discount_type', 'discount_value', 
+        'min_order_value', 'start_date', 'end_date', 'status', 'usage_limit',
     ];
 
     public function products()
@@ -36,4 +36,8 @@ class Voucher extends Model
                $this->start_date <= now() && 
                $this->end_date >= now();
     }
+    public function orders()
+{
+    return $this->hasMany(Order::class);
+}
 }

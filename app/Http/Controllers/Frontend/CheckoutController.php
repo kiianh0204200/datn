@@ -35,13 +35,11 @@ class CheckoutController extends Controller
     
             // Kiểm tra và áp dụng voucher
             $voucher = Voucher::where('code', $voucherCode)
-                ->where('status', 1) // Kiểm tra trạng thái hoạt động
+                ->where('status', 1 ) // Kiểm tra trạng thái active
                 ->where('start_date', '<=', now())
                 ->where('end_date', '>=', now())
                 ->first();
-    
-            \Log::info('Chi tiết Voucher: ', $voucher ? $voucher->toArray() : ['message' => 'Không tìm thấy Voucher']);
-            
+                \Log::info('Voucher details: ', $voucher ? $voucher->toArray() : ['message' => 'Voucher not found']);
             if ($voucher) {
                 $discount = $voucher->discount_value;
                 if ($voucher->discount_type == 0) { // Phần trăm giảm giá
@@ -52,7 +50,7 @@ class CheckoutController extends Controller
     
                 // Kiểm tra giá trị đơn hàng tối thiểu
                 if ($subtotal < $voucher->min_order_value) {
-                    throw new \Exception('Giá trị đơn hàng thấp hơn giá trị tối thiểu yêu cầu của voucher.');
+                    throw new \Exception('Order value is below the minimum required for the voucher.');
                 }
             } else {
                 $discountAmount = 0;
@@ -63,8 +61,8 @@ class CheckoutController extends Controller
             if ($total < 0) {
                 $total = 0; // Đảm bảo tổng tiền không âm
             }
-            \Log::info('Tổng phụ: ' . $subtotal);
-            \Log::info('Tổng sau khi giảm giá: ' . $total);
+            \Log::info('Subtotal: ' . $subtotal);
+            \Log::info('Total after discount: ' . $total);
     
             // Tạo đơn hàng
             $order = Order::create([
@@ -99,6 +97,7 @@ class CheckoutController extends Controller
             // Cập nhật số lượng sản phẩm
             if ($order->orderDetails) {
                 foreach ($order->orderDetails as $orderDetail) {
+                    // Xử lý chi tiết đơn hàng
                     $color = ProductOption::where('name', $orderDetail->color)->first();
                     $size = ProductOption::where('name', $orderDetail->size)->first();
                     ProductOptionValue::query()
@@ -108,7 +107,7 @@ class CheckoutController extends Controller
                         ->decrement('in_stock', $orderDetail->quantity);
                 }
             } else {
-                \Log::info('Không tìm thấy chi tiết đơn hàng cho ID đơn hàng: ' . $order->id);
+                \Log::info('No order details found for order ID: ' . $order->id);
             }
     
             // Gửi email
@@ -133,11 +132,12 @@ class CheckoutController extends Controller
             return redirect()->route('frontend.home')->with('error', 'Đơn hàng không được thanh toán thành công: ' . $exception->getMessage());
         }
     }
+    
 
     private function vnPay($orderId)
     {
         $vnpReturnUrl = env('APP_URL') . '/payment-return';
-        $vnp_TmnCode = env('VNP_TMNCODE'); // Mã website tại VNPAY
+        $vnp_TmnCode = env('VNP_TMNCODE'); //Mã website tại VNPAY
         $vnpUrl = env('VNP_URL');
 
         $order = Order::where('order_id', $orderId)->first();
@@ -222,41 +222,96 @@ class CheckoutController extends Controller
 
         $secureHash = hash_hmac('sha512', $hashData, env('VNP_HASHSECRET'));
         $vnpTranId = $inputData['vnp_TransactionNo'];
-        $vnp_Amount = $inputData['vnp_Amount'];
-        $vnpOrderInfo = $inputData['vnp_OrderInfo'];
-        $vnpTxnRef = $inputData['vnp_TxnRef'];
+        $vnp_Amount = $inputData['vnp_Amount'] / 100;
+
+        $orderId = $inputData['vnp_TxnRef'];
 
         try {
             if ($secureHash == $vnpSecureHash) {
-                if ($inputData['vnp_ResponseCode'] == '00') {
-                    $order = Order::where('order_id', $vnpTxnRef)->first();
 
-                    if ($order) {
-                        $order->payment_status = 'paid';
-                        $order->save();
+                $order = Order::where('order_id', $orderId)->first();
 
-                        // Xử lý voucher sau khi thanh toán thành công
-                        $voucherCode = $order->voucher_code;
-                        if (!empty($voucherCode)) {
-                            $voucher = Voucher::where('code', $voucherCode)->first();
+                if ($order != NULL) {
+                    if ($order->total == $vnp_Amount) {
+                        if ($order->payment_status !== NULL && $order->payment_status == 'pending') {
+                            if ($inputData['vnp_ResponseCode'] == '00' || $inputData['vnp_TransactionStatus'] == '00') {
+                                $order->update([
+                                    'payment_status' => 'paid',
+                                    'payment_id' => $vnpTranId,
+                                    'order_status' => 'confirmed',
+                                ]);
 
-                            if ($voucher && $voucher->isValid()) {
-                                $voucher->decrement('voucher_quantity');
+                                $order = Order::where('order_id', $orderId)->first();
+                                $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+                                // If Payment success
+                                // Update quantity product
+                                foreach ($orderDetails as $orderDetail) {
+                                    $color = ProductOption::where('name', $orderDetail->color)->first();
+                                    $size = ProductOption::where('name', $orderDetail->size)->first();
+                                    ProductOptionValue::query()
+                                        ->where('product_id', $orderDetail->product_id)
+                                        ->where('color_id', $color->id)
+                                        ->where('size_id', $size->id)
+                                        ->decrement('in_stock', $orderDetail->quantity);
+                                }
+                                if ($request->input('order_status') === 'completed') {
+                                    // Giả sử Order có quan hệ với Voucher qua voucher_id
+                                    if ($order->voucher_id) {
+                                        $voucher = Voucher::find($order->voucher_id);
+                            
+                                        if ($voucher && $voucher->voucher_quantity > 0) {
+                                            // Trừ 1 vào voucher_quantity
+                                            $voucher->decrement('voucher_quantity', 1);
+                                        }
+                                    }
+                                }
+
+                                Mail::to(auth()->user()->email)->send(new OrderShipped($order));
+
+                                Cart::destroy();
+
+                                return redirect()->route('frontend.home')->with('success', 'Đơn hàng đã được thanh toán thành công');
+                            } elseif ($inputData['vnp_ResponseCode'] == 11) {
+                                $order->update([
+                                    'payment_status' => 'failed',
+                                    'payment_id' => $vnpTranId,
+                                    'order_status' => 'pending',
+                                ]);
+
+                                return redirect()->route('frontend.home')->with('error', 'Giao dịch không thành công');
+                            } elseif ($inputData['vnp_ResponseCode'] == '24') {
+                                $order->update([
+                                    'payment_status' => 'failed',
+                                    'payment_id' => $vnpTranId,
+                                    'order_status' => 'pending',
+                                ]);
+
+                                return redirect()->route('frontend.home')->with('error', 'Giao dịch không thành công');
                             }
+                        } else {
+                            $returnData['RspCode'] = '02';
+                            $returnData['Message'] = 'Order already confirmed';
+                            return redirect()->route('frontend.home')->with('error', 'Đơn hàng đã được xác nhận');
                         }
-
-                        return redirect()->route('frontend.home')->with('success', 'Thanh toán thành công.');
                     } else {
-                        throw new \Exception('Không tìm thấy đơn hàng.');
+                        $returnData['RspCode'] = '04';
+                        $returnData['Message'] = 'invalid amount';
+                        return redirect()->route('frontend.home')->with('error', 'Số tiền không hợp lệ');
                     }
                 } else {
-                    throw new \Exception('Giao dịch bị từ chối.');
+                    $returnData['RspCode'] = '01';
+                    $returnData['Message'] = 'Order not found';
+                    return redirect()->route('frontend.home')->with('error', 'Đơn hàng không tồn tại');
                 }
             } else {
-                throw new \Exception('Chữ ký không hợp lệ.');
+                $returnData['RspCode'] = '97';
+                $returnData['Message'] = 'Invalid signature';
+                return redirect()->route('frontend.home')->with('error', 'Chữ ký không hợp lệ');
             }
         } catch (\Exception $e) {
-            return redirect()->route('frontend.home')->with('error', 'Thanh toán không thành công: ' . $e->getMessage());
+            $returnData['RspCode'] = '99';
+            $returnData['Message'] = 'Unknow error';
+            return redirect()->route('frontend.home')->with('error', 'Đơn hàng không thanh toán thành công');
         }
     }
 }
