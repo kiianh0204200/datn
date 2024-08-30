@@ -105,6 +105,25 @@ class OrderController extends Controller
         toastr()->success('Cập nhật trạng thái đơn hàng thành công');
         return back();
     }
+    public function cancelOrder(Request $request, $id)
+{
+    $order = Order::findOrFail($id);
+
+    // Xác thực lý do hủy
+    $request->validate([
+        'cancellation_reason' => 'required|string|max:255',
+    ]);
+
+    // Cập nhật trạng thái đơn hàng và lưu lý do hủy
+    $order->update([
+        'order_status' => 'cancelled',
+        'cancellation_reason' => $request->input('cancellation_reason'),
+    ]);
+
+    toastr()->success('Đơn hàng đã được hủy thành công.');
+    return redirect()->route('frontend.pages.account');
+}
+
     
     /**
      * Remove the specified resource from storage.

@@ -193,6 +193,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
 Route::get('/order-track', [HomeController::class, 'orderTrack'])->name('order.track');
 Route::post('product/track/order', [HomeController::class, 'productTrackOrder'])->name('product.track.order');
+// web.php
 
 
 Route::get('/about-us', [AboutController::class, 'index']);
@@ -230,7 +231,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
-        Route::get('/order-cancel/{id}', [AccountController::class, 'orderCancel'])->name('frontend.user.order-cancel');
+        Route::post('/order-cancel/{id}', [AccountController::class, 'orderCancel'])->name('frontend.user.order-cancel');
     });
 });
 

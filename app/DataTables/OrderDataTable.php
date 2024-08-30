@@ -40,22 +40,36 @@ class OrderDataTable extends DataTable
                     return "<span class='badge rounded-pill alert-success'>$data->order_status</span>";
                 } elseif ($data->order_status === 'pending_ship') {
                     return "<span class='badge rounded-pill alert-info'>Đang giao hàng</span>";
+                } elseif ($data->order_status === 'cancelled') {
+                    return "<span class='badge rounded-pill alert-danger'>$data->order_status</span>";
                 } else {
                     return "<span class='badge rounded-pill alert-warning'>$data->order_status</span>";
                 }
             })
             ->addColumn('action', function ($data) {
                 $buttonDelete = '';
-                if (auth()->user()->can('delete order management')) {
+    
+                // Nếu đơn hàng đã hoàn thành và thanh toán
+                if ($data->order_status == 'completed' && $data->payment_status == 'paid' && auth()->user()->can('delete order management')) {
                     $routeDelete = route('admin.order.destroy', $data->id);
                     $buttonDelete = "<a href='$routeDelete' class='btn btn-md font-sm bg-danger'>Delete</a>";
                 }
-                $element = "$buttonDelete";
-                return $element;
+    
+                // Nếu đơn hàng bị hủy
+                if ($data->order_status == 'cancelled' && auth()->user()->can('delete order management')) {
+                    $routeDelete = route('admin.order.destroy', $data->id);
+                    $buttonDelete = "<a href='$routeDelete' class='btn btn-md font-sm bg-danger'>Delete</a>";
+                }
+    
+                return $buttonDelete;
             })
             ->rawColumns(['action', 'payment_status', 'order_status', 'order_id'])
             ->setRowId('id');
     }
+    
+    
+    
+    
 
     /**
      * Get the query source of dataTable.
@@ -96,6 +110,7 @@ class OrderDataTable extends DataTable
             'payment_method' => ['data' => 'payment_method', 'name' => 'payment_method', 'title' => 'Payment Method'],
             'payment_status' => ['data' => 'payment_status', 'name' => 'payment_status', 'title' => 'Payment Status'],
             'order_status' => ['data' => 'order_status', 'name' => 'order_status', 'title' => 'Order Status'],
+            'cancellation_reason' => ['data' => 'cancellation_reason', 'name' => 'cancellation_reason', 'title' => 'Lý do hủy đơn'],
             'payment_id' => ['data' => 'payment_id', 'name' => 'payment_id', 'title' => 'Payment ID'],
             'created_at' => ['data' => 'created_at', 'name' => 'created_at', 'title' => 'Created At'],
             'updated_at' => ['data' => 'updated_at', 'name' => 'updated_at', 'title' => 'Updated At'],

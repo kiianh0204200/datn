@@ -24,7 +24,7 @@ class Order extends Model
         'address',
         'address_2',
         'notes',
-        'voucher_code', 'discount_amount',
+        'voucher_code', 'discount_amount','cancellation_reason'
     ];
 
     public function user(): BelongsTo
