@@ -9,7 +9,7 @@ class UpdateVoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|string|unique:vouchers,code,' . $this->route('voucher'),
+            'code' => 'required|string|' . $this->route('voucher'),
             'description' => 'nullable|string',
             'discount_type' => 'required|string',
             'discount_value' => 'required|numeric',
@@ -22,4 +22,6 @@ class UpdateVoucherRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
+    
+    
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Voucher\StoreVoucherRequest;
 use App\Http\Requests\Admin\Voucher\UpdateVoucherRequest;
 use App\Models\Voucher;
 use App\Helpers\Files;
+use App\Models\VoucherUsage;
 use Illuminate\Http\Request;
 
 class VoucherController extends Controller
@@ -95,7 +96,7 @@ class VoucherController extends Controller
         if (empty($voucherCode)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Voucher code is required.' // Voucher code is required
+                'message' => 'Voucher code is required.'
             ]);
         }
     
@@ -107,7 +108,7 @@ class VoucherController extends Controller
             \Log::info('Voucher not found: ' . $voucherCode);
             return response()->json([
                 'success' => false,
-                'message' => 'Voucher không tồn tại .' // Voucher code does not exist
+                'message' => 'Voucher không tồn tại.'
             ]);
         }
     
@@ -116,7 +117,28 @@ class VoucherController extends Controller
             \Log::info('Voucher is invalid or expired: ' . $voucherCode);
             return response()->json([
                 'success' => false,
-                'message' => 'Voucher đã hết hạn.' // Voucher code is expired
+                'message' => 'Voucher đã hết hạn.'
+            ]);
+        }
+    
+        // Kiểm tra số lượng voucher còn lại
+        if ($voucher->voucher_quantity <= 0) {
+            \Log::info('Voucher quantity exhausted: ' . $voucherCode);
+            return response()->json([
+                'success' => false,
+                'message' => 'Số lượng voucher đã hết.'
+            ]);
+        }
+    
+        // Kiểm tra số lần sử dụng voucher
+        $usageCount = VoucherUsage::where('voucher_id', $voucher->id)
+            ->where('user_id', auth()->id()) // Hoặc $request->user_id nếu có
+            ->count();
+    
+        if ($usageCount >= $voucher->usage_limit) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Bạn đã hết số lần sử dụng voucher.'
             ]);
         }
     
@@ -130,6 +152,9 @@ class VoucherController extends Controller
             'total_amount' => formatPrice($totalAmount)
         ]);
     }
+    
+    
+
     
 
 

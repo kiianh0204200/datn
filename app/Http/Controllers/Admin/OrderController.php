@@ -9,6 +9,7 @@ use App\Models\OrderDetail;
 use App\Models\ProductOption;
 use App\Models\ProductOptionValue;
 use App\Models\Voucher;
+use App\Models\VoucherUsage;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -71,21 +72,28 @@ class OrderController extends Controller
             'payment_status' => $data['payment_status'] ?? $order->payment_status,
         ]);
     
-        // Trừ số lượng voucher nếu đơn hàng hoàn thành
+        // Trừ số lượng voucher khi đơn hàng hoàn thành
         if ($request->input('order_status') === 'completed') {
-            // Giả sử bạn có mã voucher trong `order`
             $voucherCode = $order->voucher_code; // Thay đổi logic này tùy theo cấu trúc bảng của bạn
             $voucher = Voucher::where('code', $voucherCode)->first();
     
             if ($voucher) {
+                // Trừ số lượng voucher còn lại (nếu cần)
                 if ($voucher->voucher_quantity > 0) {
                     $voucher->decrement('voucher_quantity', 1);
                 } else {
                     toastr()->warning('Số lượng voucher đã hết');
                 }
-            } else {
-                toastr()->error('Không tìm thấy voucher');
-            }
+    
+                // Lưu thông tin sử dụng voucher vào bảng voucher_usages
+                VoucherUsage::create([
+                    'user_id' => $order->user_id, // Thay đổi theo cấu trúc bảng của bạn
+                    'voucher_id' => $voucher->id,
+                    'order_id' => $order->id,
+                    'used_at' => now(),
+                ]);
+    
+            } 
         }
     
         // Cập nhật số lượng sản phẩm khi hủy đơn hàng
@@ -105,6 +113,11 @@ class OrderController extends Controller
         toastr()->success('Cập nhật trạng thái đơn hàng thành công');
         return back();
     }
+    
+    
+
+    
+    
     public function cancelOrder(Request $request, $id)
 {
     $order = Order::findOrFail($id);

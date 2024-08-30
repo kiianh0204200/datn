@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class VoucherUsage extends Model
 {
-    use HasFactory;
+    protected $table = 'voucher_usage';
+    protected $fillable = ['voucher_id', 'order_id', 'user_id', 'used_at'];
 
-    protected $fillable = ['voucher_id', 'user_id', 'order_id', 'used_at'];
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
+    }
 
-    public $timestamps = false;
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
