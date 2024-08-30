@@ -143,14 +143,27 @@ class VoucherController extends Controller
         }
     
         // Nếu mã voucher hợp lệ, tiến hành tính toán giảm giá
+        $subTotal = \Cart::subTotal();
+        $discountAmount = 0;
+
+    if ($voucher->discount_type === 1) {
+        // Giảm giá cố định
         $discountAmount = $voucher->discount_value;
-        $totalAmount = \Cart::subTotal() - $discountAmount;
-    
-        return response()->json([
-            'success' => true,
-            'discount_amount' => $discountAmount,
-            'total_amount' => formatPrice($totalAmount)
-        ]);
+    } elseif ($voucher->discount_type === 0) {
+        // Giảm giá theo phần trăm
+        $discountAmount = ($voucher->discount_value / 100) * $subTotal;
+    }
+
+    // Đảm bảo không giảm giá âm
+    $discountAmount = min($discountAmount, $subTotal);
+
+    $totalAmount = $subTotal - $discountAmount;
+
+    return response()->json([
+        'success' => true,
+        'discount_amount' => $discountAmount,
+        'total_amount' => formatPrice($totalAmount)
+    ]);
     }
     
     
