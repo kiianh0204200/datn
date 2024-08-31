@@ -439,7 +439,7 @@
             }
 
             // Kiểm tra nếu chưa chọn kích thước
-            if ($('.size-filter li.active').length === 0) {
+           else if ($('.size-filter li.active').length === 1) {
                 toastr.warning('Vui lòng chọn kích thước trước khi thêm vào giỏ hàng');
                 return;
             }
