@@ -147,5 +147,6 @@ return array(
     'voucher List'=>'voucher List',
     'Voucher Code'=>'Voucher Code',
     'Edit Voucher'=>'Edit Voucher',
-    
+    'Order Status Distribution'=>'Order Status Distribution',
+    'Revenue'=>'Revenue',
 );

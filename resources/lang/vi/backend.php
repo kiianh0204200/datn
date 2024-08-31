@@ -163,8 +163,8 @@ return array (
     'Edit Voucher'=>'Chỉnh sửa Voucher',
     'discount_type'=>'Loại voucher',
     'Min Order Value'=>'Đơn hàng tối thiểu',
-
-
+'Order Status Distribution'=>'Phân phối trạng thái đơn hàng',
+'Revenue'=>'Doanh Thu',
 
 
 

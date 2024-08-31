@@ -55,22 +55,26 @@ class ProductDataTable extends DataTable
             ->addColumn('action', function ($data) {
                 $buttonEdit = '';
                 $buttonDelete = '';
+    
                 if (auth()->user()->can('update product management')) {
                     $routeEdit = route('admin.product.edit', $data->id);
                     $buttonEdit = "<a href='$routeEdit' class='btn btn-primary btn-md'>Edit</a>";
                 }
-                if (auth()->user()->can('delete product management')) {
+                
+                // Chỉ hiển thị nút delete khi is_active = 0
+                if (auth()->user()->can('delete product management') && $data->is_active == 0) {
                     $routeDelete = route('admin.product.destroy', $data->id);
                     $buttonDelete = "<a href='$routeDelete' class='btn btn-md font-sm bg-danger'>Delete</a>";
                 }
-                $element = "$buttonEdit $buttonDelete";
-                return $element;
+    
+                return "$buttonEdit $buttonDelete";
             })
             ->rawColumns(['action', 'is_active', 'thumbnail', 'condition', 'name'])
             ->setRowId(function ($row) {
                 return 'row-' . $row->id;
             });
     }
+    
 
     /**
      * Get the query source of dataTable.

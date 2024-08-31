@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
@@ -22,6 +23,7 @@ class ProductListController extends Controller
         $name = $request->query('name');
 
         $products = Product::query()
+            ->where('is_active', 1) // Chỉ lấy các sản phẩm có is_active = 1
             ->when($name, function ($query, $name) {
                 $query->where('name', 'like', "%{$name}%");
             })
