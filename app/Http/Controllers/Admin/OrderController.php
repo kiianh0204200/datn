@@ -72,13 +72,34 @@ class OrderController extends Controller
             'payment_status' => $data['payment_status'] ?? $order->payment_status,
         ]);
     
-        // Trừ số lượng voucher khi đơn hàng hoàn thành
+        // Trừ số lượng sản phẩm và số lượng voucher khi đơn hàng hoàn thành
         if ($request->input('order_status') === 'completed') {
-            $voucherCode = $order->voucher_code; // Thay đổi logic này tùy theo cấu trúc bảng của bạn
+            // Trừ số lượng sản phẩm trong kho
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+            foreach ($orderDetails as $orderDetail) {
+                $color = ProductOption::where('name', $orderDetail->color)->first();
+                $size = ProductOption::where('name', $orderDetail->size)->first();
+                $productOptionValue = ProductOptionValue::query()
+                    ->where('product_id', $orderDetail->product_id)
+                    ->where('color_id', $color->id)
+                    ->where('size_id', $size->id)
+                    ->first();
+                
+                // Kiểm tra nếu còn sản phẩm trong kho
+                if ($productOptionValue->in_stock >= $orderDetail->quantity) {
+                    $productOptionValue->decrement('in_stock', $orderDetail->quantity);
+                } else {
+                    toastr()->warning('Số lượng sản phẩm không đủ trong kho');
+                    return back();
+                }
+            }
+    
+            // Trừ số lượng voucher nếu đơn hàng hoàn thành
+            $voucherCode = $order->voucher_code;
             $voucher = Voucher::where('code', $voucherCode)->first();
     
             if ($voucher) {
-                // Trừ số lượng voucher còn lại (nếu cần)
+                // Trừ số lượng voucher còn lại
                 if ($voucher->voucher_quantity > 0) {
                     $voucher->decrement('voucher_quantity', 1);
                 } else {
@@ -87,13 +108,12 @@ class OrderController extends Controller
     
                 // Lưu thông tin sử dụng voucher vào bảng voucher_usages
                 VoucherUsage::create([
-                    'user_id' => $order->user_id, // Thay đổi theo cấu trúc bảng của bạn
+                    'user_id' => $order->user_id, 
                     'voucher_id' => $voucher->id,
                     'order_id' => $order->id,
                     'used_at' => now(),
                 ]);
-    
-            } 
+            }
         }
     
         // Cập nhật số lượng sản phẩm khi hủy đơn hàng
@@ -113,6 +133,7 @@ class OrderController extends Controller
         toastr()->success('Cập nhật trạng thái đơn hàng thành công');
         return back();
     }
+    
     
     
 
