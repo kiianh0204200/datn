@@ -234,4 +234,5 @@ return array (
     'Back To Home Page' => 'Back To Home Page',
     'Apply Voucher' => 'Apply Voucher',
     'Apply' => 'Apply',
+    
 );

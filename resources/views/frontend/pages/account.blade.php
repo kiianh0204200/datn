@@ -83,6 +83,9 @@
                                                             <th>{{ __('frontend.Order') }}</th>
                                                             <th>{{ __('frontend.Date') }}</th>
                                                             <th>{{ __('frontend.Status') }}</th>
+                                                            <th>{{ __('Lí do hủy') }}</th>
+                                                            <th>{{ __('Thanh toán') }}</th>
+
                                                             <th>{{ __('frontend.Total') }}</th>
                                                             <th>{{ __('frontend.Actions') }}</th>
                                                         </tr>
@@ -99,13 +102,16 @@
                                                                             {{ __('frontend.Processing') }}
                                                                         @elseif($order->order_status == 'confirmed')
                                                                             {{ __('frontend.Confirmed') }}
+                                                                            @elseif($order->order_status == 'pending_ship')
+                                                                            {{ __('Đang Giao Hàng') }}  
                                                                         @elseif($order->order_status == 'shipped')
                                                                             {{ __('frontend.Shipped') }}
                                                                         @elseif($order->order_status == 'completed')
                                                                             {{ __('frontend.Completed') }}
                                                                         @elseif($order->order_status == 'cancelled')
-                                                                            {{ __('frontend.Cancelled') }}
+                                                                            {{ __('frontend.Cancel') }}
                                                                         @endif
+                                                                        
                                                                     </td>
                                                                     <td>
                                                                         @if($order->order_status == 'cancelled')
@@ -118,7 +124,7 @@
                                                                     <td>{{ formatPrice($order->total) }} đ</td>
                                                                     <td>
                                                                         <a href="{{ route('frontend.user.order-detail', $order->id) }}" class="btn-small d-block">{{ __('frontend.View') }}</a>
-                                                                        @if($order->order_status != 'shipped' && $order->order_status != 'completed' && $order->order_status != 'cancelled')
+                                                                        @if($order->order_status != 'pending_ship' && $order->order_status != 'shipped' && $order->order_status != 'completed' && $order->order_status != 'cancelled')
                                                                             <!-- Nút hủy đơn hàng -->
                                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#cancelModal" data-order-id="{{ $order->id }}" class="btn-small">{{ __('frontend.Cancel') }}</a>
                                                                         @endif
