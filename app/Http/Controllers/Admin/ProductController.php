@@ -65,7 +65,7 @@ class ProductController extends Controller
             'discount' => $data['discount'],
             'condition' => $data['condition'],
             'is_active' => $data['status'],
-          
+            'sku' => $data['sku'] ?? null,
         ]);
 
         if ($product) {
