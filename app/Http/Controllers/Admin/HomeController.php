@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -70,6 +71,12 @@ class HomeController extends Controller
      */
     private function getOrderStatusData($start, $end)
     {
+        return Order::query()
+            ->select('order_status', DB::raw('COUNT(*) as count'))
+            ->whereBetween('created_at', [$start, $end])
+            ->groupBy('order_status')
+            ->pluck('count', 'order_status')
+            ->toArray();
         return Order::query()
             ->select('order_status', DB::raw('COUNT(*) as count'))
             ->whereBetween('created_at', [$start, $end])
