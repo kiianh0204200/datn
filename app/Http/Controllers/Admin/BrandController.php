@@ -109,14 +109,4 @@ class BrandController extends Controller
         }
         return $slug;
     }
-    protected function checkSlug($name)
-    {
-        $checkSlug = Brand::where('slug', Str::slug($name))->exists();
-        if ($checkSlug) {
-            $slug = Str::slug($name) . '-' . uniqid();
-        } else {
-            $slug = Str::slug($name);
-        }
-        return $slug;
-    }
 }
