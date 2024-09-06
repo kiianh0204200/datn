@@ -46,7 +46,7 @@ class BrandController extends Controller
         ]);
 
         toastr()->success(__('backend.Brand created successfully'));
-        return redirect()->route('admin.brand.index');
+      
     }
 
     /**
