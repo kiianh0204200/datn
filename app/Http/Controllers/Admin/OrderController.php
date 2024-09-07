@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function index(OrderDataTable $dataTable)
     {
-        return $dataTable->render('backend.order.index');
+      
     }
 
     /**
