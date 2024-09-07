@@ -45,7 +45,7 @@ class BrandController extends Controller
             'is_active' => $data['status'],
         ]);
 
-        toastr()->success(__('backend.Brand created successfully'));
+        toastr()->sommituccess(__('backend.Brand created successfully'));
       
     }
 
