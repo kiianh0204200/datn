@@ -83,42 +83,82 @@
                                                             <th>{{ __('frontend.Order') }}</th>
                                                             <th>{{ __('frontend.Date') }}</th>
                                                             <th>{{ __('frontend.Status') }}</th>
+                                                            <th>{{ __('Lí do hủy') }}</th>
+                                                            <th>{{ __('Thanh toán') }}</th>
+
                                                             <th>{{ __('frontend.Total') }}</th>
                                                             <th>{{ __('frontend.Actions') }}</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($orders as $order)
-                                                            <tr>
-                                                                <td>#{{$order->order_id}}</td>
-                                                                <td>{{$order->created_at->format('d-m-Y H:i:s')}}</td>
-                                                                @if($order->order_status =='pending')
-                                                                    <td>{{ __('frontend.Pending') }}</td>
-                                                                @elseif($order->order_status =='processing')
-                                                                    <td>{{ __('frontend.Processing') }}</td>
-                                                                @elseif($order->order_status =='confirmed')
-                                                                    <td>{{ __('frontend.Confirmed') }}</td>
-                                                                @elseif($order->order_status =='shipped')
-                                                                    <td>{{ __('frontend.Shipped') }}</td>
-                                                                @elseif($order->order_status =='completed')
-                                                                    <td>{{ __('frontend.Completed') }}</td>
-                                                                @elseif($order->order_status =='cancelled')
-                                                                    <td>{{ __('frontend.Cancelled') }}</td>
-                                                                @endif
-                                                                <td>{{formatPrice($order->total)}} đ</td>
-                                                                <td>
-                                                                    <a href="{{route('frontend.user.order-detail', $order->id)}}"
-                                                                       class="btn-small d-block">{{ __('frontend.View') }}</a>
-                                                                    @if($order->order_status == 'cancelled')
-                                                                        <a></a>
-                                                                    @else
-                                                                        <a href="{{route('frontend.user.order-cancel', $order->id)}}">{{ __('frontend.Cancel') }}</a>
-                                                                    @endif
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
+                                                            @foreach($orders as $order)
+                                                                <tr>
+                                                                    <td>#{{ $order->order_id }}</td>
+                                                                    <td>{{ $order->created_at->format('d-m-Y H:i:s') }}</td>
+                                                                    <td>
+                                                                        @if($order->order_status == 'pending')
+                                                                            {{ __('frontend.Pending') }}
+                                                                        @elseif($order->order_status == 'processing')
+                                                                            {{ __('frontend.Processing') }}
+                                                                        @elseif($order->order_status == 'confirmed')
+                                                                            {{ __('frontend.Confirmed') }}
+                                                                            @elseif($order->order_status == 'pending_ship')
+                                                                            {{ __('Đang Giao Hàng') }}  
+                                                                        @elseif($order->order_status == 'shipped')
+                                                                            {{ __('frontend.Shipped') }}
+                                                                        @elseif($order->order_status == 'completed')
+                                                                            {{ __('frontend.Completed') }}
+                                                                        @elseif($order->order_status == 'cancelled')
+                                                                            {{ __('frontend.Cancel') }}
+                                                                        @endif
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        @if($order->order_status == 'cancelled')
+                                                                            {{ $order->cancellation_reason }}
+                                                                        @else
+                                                                            <!-- Để trống nếu đơn hàng không bị hủy -->
+                                                                        @endif
+                                                                    </td>
+                                                                    <td>{{ $order->payment_method }}</td>
+                                                                    <td>{{ formatPrice($order->total) }} đ</td>
+                                                                    <td>
+                                                                        <a href="{{ route('frontend.user.order-detail', $order->id) }}" class="btn-small d-block">{{ __('frontend.View') }}</a>
+                                                                        @if($order->order_status != 'pending_ship' && $order->order_status != 'shipped' && $order->order_status != 'completed' && $order->order_status != 'cancelled')
+                                                                            <!-- Nút hủy đơn hàng -->
+                                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#cancelModal" data-order-id="{{ $order->id }}" class="btn-small">{{ __('frontend.Cancel') }}</a>
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
+                                                        
+                                                        <!-- Bootstrap Modal -->
+                                                    
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
                                                     </table>
+                                                     <!-- Bootstrap Modal -->
+                                                     <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="cancelModalLabel">Nhập lý do hủy đơn hàng</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form id="cancelForm" method="POST">
+                                                                        @csrf
+                                                                        <textarea name="cancellation_reason" class="form-control" placeholder="Nhập lý do hủy" required></textarea>
+                                                                        <button type="submit" class="btn btn-primary mt-3">{{ __('Xác Nhận') }}</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
                                                         <nav aria-label="Page navigation example">
                                                             <ul class="pagination justify-content-start">
@@ -344,6 +384,19 @@
                     }
                 })
             });
+        </script>
+       <script>
+     document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[data-bs-toggle="modal"]').forEach(function (element) {
+        element.addEventListener('click', function () {
+            var orderId = this.getAttribute('data-order-id');
+            var form = document.getElementById('cancelForm');
+            form.action = "{{ route('frontend.user.order-cancel', '') }}/" + orderId;
+            document.getElementById('order_id').value = orderId;
+        });
+    });
+});
+        </script>
         </script>
     @endpush
 @endsection

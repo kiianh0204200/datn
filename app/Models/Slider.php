@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fabric extends Model
+class Slider extends Model
 {
     use HasFactory;
-
-    protected $table = 'fabrics';
-
-    protected $fillable = [
-        'id',
-        'fabric',
-        'create_date',
-        'update_date',
-    ];
-
+    protected $table = 'sliders';
     public $timestamps = false;
+    protected $fillable = [
+        'name',
+        'url',
+        'thumb',
+        'sort_by',
+        'active'
+    ];
 }

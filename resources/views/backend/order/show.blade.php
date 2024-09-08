@@ -43,6 +43,7 @@
                             <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" name="order_status" @if($order->order_status === 'completed') disabled @endif>
                                 <option>{{ __('backend.Change status') }}</option>
                                 @if($order->order_status === 'pending')
+                                    <option value="cancel" @if($order->order_status == 'cancel') selected @endif> {{ __('backend.Cancel') }} </option>
                                     <option value="pending" @if($order->order_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
                                     <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
                                     <option value="pending_ship" @if($order->order_status == 'pending_ship') selected @endif> Đang giao hàng </option>
@@ -59,6 +60,8 @@
                                     <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
                                 @elseif($order->order_status === 'completed')
                                     <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+                                @elseif($order->order_status === 'cancel')
+                                    <option value="cancel" @if($order->order_status == 'cancel') selected @endif>{{ __('backend.Cancel') }}</option>
                                 @endif
 
                             </select>
@@ -98,7 +101,7 @@
                                 <h6 class="mb-1">{{ __('backend.Order information') }}</h6>
                                 <p class="mb-1">
                                     {{ __('backend.Shipping') }}: Ship code <br> {{ __('backend.Pay method') }}: {{$order->payment_method}} <br>
-                                    {{ __('backend.Status') }}:{{$order->order_status}}
+                                    {{ __('backend.Status') }}: {{$order->order_status}}
                                 </p>
                             </div>
                         </article>
@@ -154,10 +157,19 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="6">
+
+                                        <dl class="dlist">
+                                            <dt>{{ __('voucher') }}:</dt>
+                                            <dd><b class="h5">{{number_format($orderItem->total, 0, '', ',')}}</b></dd>
+                                        </dl>
                                         <article class="float-end">
                                             <dl class="dlist">
                                                 <dt>{{ __('backend.Shipping cost') }}:</dt>
-                                                <dd>0</dd>
+                                                <dd class="h5">0</dd>
+                                            </dl>
+                                            <dl class="dlist">
+                                                <dt>{{ __('voucher') }}:</dt>
+                                                <dd><b class="h5">-{{number_format($order->discount_amount, 0, '', ',')}}</b></dd>
                                             </dl>
                                             <dl class="dlist">
                                                 <dt>{{ __('frontend.Total') }}:</dt>

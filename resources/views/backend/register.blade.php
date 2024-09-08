@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>GoldenEra Dashboard</title>
+    <title>Evara Dashboard</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,7 +79,7 @@
             <p class="font-xs">
                 <script>
                     document.write(new Date().getFullYear())
-                </script> ©, Wd-11 - Website bán hàng thời trang Golden Era .
+                </script> ©, Evara - HTML Ecommerce Template .
             </p>
             <p class="font-xs mb-30">All rights reserved</p>
         </footer>
@@ -92,5 +92,6 @@
 </body>
 
 
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/page-account-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:33:33 GMT -->
 
 </html>

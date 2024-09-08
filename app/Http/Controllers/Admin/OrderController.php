@@ -1,84 +1,174 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\DataTables\OrderDataTable;
+use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\Shipping;
-use App\Models\Customer;
 use App\Models\OrderDetail;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+use App\Models\ProductOption;
+use App\Models\ProductOptionValue;
+use App\Models\Voucher;
+use App\Models\VoucherUsage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+
 class OrderController extends Controller
 {
-    public function AuthLogin(){
-        $admin_id=Session()->get('admin_id');
-        if($admin_id)
-        return redirect::to('/dashboard');
-        else
-        return redirect::to('/admin')->send();
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(OrderDataTable $dataTable)
+    {
+      
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
-    public function manager_order(){
-        $this->AuthLogin();
-        $order=Order::orderby('created_at','desc')->get();
-        return view('admin.manager_order')->with(compact('order'));
-    }  
-    public function view_order($order_code){
-        $order_details=OrderDetail::where('order_code',$order_code)->get();
-        $order=Order::where('order_code',$order_code)->get();
-        foreach($order as $key => $ord){
-           $customer_id = $ord->customer_id;
-           $shipping_id = $ord->shipping_id;        
-        } 
-        $customer= Customer::where('customer_id',$customer_id)->first();
-        $shipping=Shipping::where('shipping_id',$shipping_id)->first();
-        $order_detailss=OrderDetail::with('product')->where('order_code',$order_code)->get();
-        
-        return view('admin.view_order')->with(compact('order_details','customer','shipping','order_detailss','order'));
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
-    public function delete_order($order_id){
-        $this->AuthLogin();
-        DB::table('tbl_order')->where('order_id',$order_id)->delete();
-        session()->put('message',' Xóa thành công');
-        return Redirect::to('manager-order');
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $order = Order::with(['orderItems', 'user'])->findOrFail($id);
+
+        return view('backend.order.show', compact('order'));
     }
-    public function update_order(Request $request){
-        $data=$request->all();
-        $order=Order::find($data['order_id']);
-        $order->order_status=$data['order_status'];
-        $order->save();
-        if($order->order_status==2){
-            foreach($data['order_product_id'] as $key1 =>$product_id){
-                $product=Product::find($product_id);   
-                $product_qty=$product->product_quantity;               
-                foreach($data['quantity'] as $key2 =>$qty){
-                    if($key1==$key2){
-                        $product_result=$product_qty-$qty;
-                        $product->product_quantity=$product_result;
-                        $product->save();
-                    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $data = $request->validate([
+            'order_status' => ['required_without:payment_status', 'string', 'max:255'],
+            'payment_status' => ['required_without:order_status', 'string', 'max:255'],
+        ]);
+    
+        $order = Order::findOrFail($id);
+        $order->update([
+            'order_status' => $data['order_status'] ?? $order->order_status,
+            'payment_status' => $data['payment_status'] ?? $order->payment_status,
+        ]);
+    
+        // Trừ số lượng sản phẩm và số lượng voucher khi đơn hàng hoàn thành
+        if ($request->input('order_status') === 'completed') {
+            // Trừ số lượng sản phẩm trong kho
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+            foreach ($orderDetails as $orderDetail) {
+                $color = ProductOption::where('name', $orderDetail->color)->first();
+                $size = ProductOption::where('name', $orderDetail->size)->first();
+                $productOptionValue = ProductOptionValue::query()
+                    ->where('product_id', $orderDetail->product_id)
+                    ->where('color_id', $color->id)
+                    ->where('size_id', $size->id)
+                    ->first();
+                
+                // Kiểm tra nếu còn sản phẩm trong kho
+                if ($productOptionValue->in_stock >= $orderDetail->quantity) {
+                    $productOptionValue->decrement('in_stock', $orderDetail->quantity);
+                } else {
+                    toastr()->warning('Số lượng sản phẩm không đủ trong kho');
+                    return back();
                 }
             }
-        }
-        elseif($order->order_status!=2&&$order->order_status!=3){
-            foreach($data['order_product_id'] as $key1 =>$product_id){
-                $product=Product::find($product_id);   
-                $product_qty=$product->product_quantity;               
-                foreach($data['quantity'] as $key2 =>$qty){
-                    if($key1==$key2){
-                        $product_result=$product_qty+$qty;
-                        $product->product_quantity=$product_result;
-                        $product->save();
-                    }
+    
+            // Trừ số lượng voucher nếu đơn hàng hoàn thành
+            $voucherCode = $order->voucher_code;
+            $voucher = Voucher::where('code', $voucherCode)->first();
+    
+            if ($voucher) {
+                // Trừ số lượng voucher còn lại
+                if ($voucher->voucher_quantity > 0) {
+                    $voucher->decrement('voucher_quantity', 1);
+                } else {
+                    toastr()->warning('Số lượng voucher đã hết');
                 }
+    
+                // Lưu thông tin sử dụng voucher vào bảng voucher_usages
+                VoucherUsage::create([
+                    'user_id' => $order->user_id, 
+                    'voucher_id' => $voucher->id,
+                    'order_id' => $order->id,
+                    'used_at' => now(),
+                ]);
             }
         }
+    
+        // Cập nhật số lượng sản phẩm khi hủy đơn hàng
+        if ($request->input('order_status') === 'cancel') {
+            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+            foreach ($orderDetails as $orderDetail) {
+                $color = ProductOption::where('name', $orderDetail->color)->first();
+                $size = ProductOption::where('name', $orderDetail->size)->first();
+                ProductOptionValue::query()
+                    ->where('product_id', $orderDetail->product_id)
+                    ->where('color_id', $color->id)
+                    ->where('size_id', $size->id)
+                    ->increment('in_stock', $orderDetail->quantity);
+            }
+        }
+    
+        toastr()->success('Cập nhật trạng thái đơn hàng thành công');
+        return back();
     }
-    public function update_qty(Request $request){
-        $data=$request->all();
-        $order_details=OrderDetail::where('product_id',$data['order_product_id'])->where('order_code',$data['order_code'])->first();
-        $order_details->product_sales_qty=$data['order_qty'];
-        $order_details->save();
+    
+    
+    
+
+    
+    
+    public function cancelOrder(Request $request, $id)
+{
+    $order = Order::findOrFail($id);
+
+    // Xác thực lý do hủy
+    $request->validate([
+        'cancellation_reason' => 'required|string|max:255',
+    ]);
+
+    // Cập nhật trạng thái đơn hàng và lưu lý do hủy
+    $order->update([
+        'order_status' => 'cancelled',
+        'cancellation_reason' => $request->input('cancellation_reason'),
+    ]);
+
+    toastr()->success('Đơn hàng đã được hủy thành công.');
+    return redirect()->route('frontend.pages.account');
+}
+
+    
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->orderItems()->delete();
+        $order->delete();
+
+        toastr()->success('Xóa đơn hàng thành công');
+        return back();
     }
 }

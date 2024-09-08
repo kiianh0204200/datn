@@ -643,7 +643,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Spartan", sans-serif;
+  font-family: "Roboto" ,sans-serif;
   color: #222222;
   font-weight: 600;
   line-height: 1.2;
@@ -2370,7 +2370,7 @@ label {
 .brand-logo img {
   width: auto;
   display: inline-block;
-  padding: 50px 0;
+  padding: 10px 0;
 }
 
 /*Heading tab*/
@@ -5401,7 +5401,7 @@ h6.post-title {
 
 .logo.logo-width-1 {
   margin-right: 23px;
-} 
+}
 
 .logo.logo-width-1 .logo2 {
   width: 120px;

@@ -143,4 +143,31 @@ return array (
     'Reset password link sent successfully!'=> 'Đặt lại mật khẩu thành công!',
     'Header title' => 'Tiêu đề đầu',
     'Edit New Category' => 'Chỉnh sửa danh mục mới',
-);
+    'Voucher Management' => 'Phiếu giảm giá',
+    'voucher List' => 'Danh sách phiếu giảm giá',
+    'Voucher Code'=>'Mã phiếu thưởng',
+    'Discount Type'=>'Loại giảm giá',
+    'Discount Value'=>'Số tiền Giảm',
+    'Start Date'=>'Ngày bắt đầu',
+    'End Date'=>'Ngày kết thúc',
+
+
+    'Usage Limit'=>'Giới hạn sử dụng',
+    'Minimum Order Value'=>'Giá trị đặt hàng tối thiểu',
+    'Applicable Products'=>'Sản Phảm áp dụng',
+    'Applicable Categories'=>'Danh mục áp dụng',
+
+    'Customer Restrictions'=>'Hạn chế của khách hàng',
+
+    'Redemption Count'=>'Số lần quy đổi',
+    'Edit Voucher'=>'Chỉnh sửa Voucher',
+    'discount_type'=>'Loại voucher',
+    'Min Order Value'=>'Đơn hàng tối thiểu',
+'Order Status Distribution'=>'Phân phối trạng thái đơn hàng',
+'Revenue'=>'Doanh Thu',
+
+
+
+); 
+
+

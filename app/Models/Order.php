@@ -24,6 +24,7 @@ class Order extends Model
         'address',
         'address_2',
         'notes',
+        'voucher_code', 'discount_amount','cancellation_reason'
     ];
 
     public function user(): BelongsTo
@@ -34,5 +35,11 @@ class Order extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderDetail::class, 'order_id', 'id');
+
     }
+    
+    public function voucher()
+{
+    return $this->belongsTo(Voucher::class);
+}
 }

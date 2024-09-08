@@ -45,6 +45,9 @@
                                                     <th>{{ __('frontend.Order ID') }}</th>
                                                     <th>{{ __('frontend.Order Date') }}</th>
                                                     <th>{{ __('frontend.Status') }}</th>
+                                                    @if($order->order_status === 'cancelled')
+                                                        <th>{{ __('Lí do hủy đơn') }}</th>
+                                                    @endif
                                                     <th>Thanh toán</th>
                                                     <th>{{ __('frontend.Total') }}</th>
                                                 </tr>
@@ -62,18 +65,24 @@
                                                             Đang giao hàng
                                                         @elseif($order->order_status === 'shipped')
                                                             Đã giao hàng
-                                                        @elseif($order->order_status === 'cancel')
+                                                        @elseif($order->order_status === 'cancelled')
                                                             Đã hủy
                                                         @elseif($order->order_status === 'completed')
                                                             Hoàn thành
                                                         @endif
                                                     </td>
+                                                    @if($order->order_status === 'cancelled')
+                                                        <td>{{$order->cancellation_reason}}</td>
+                                                    @endif
                                                     <td>{{$order->payment_method}}</td>
                                                     <td>{{formatPrice($order->total)}} đ</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
+                                            
+                                            
                                         </div>
+
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
