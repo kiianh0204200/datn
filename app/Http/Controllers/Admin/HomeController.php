@@ -77,5 +77,6 @@ class HomeController extends Controller
             ->groupBy('order_status')
             ->pluck('count', 'order_status')
             ->toArray();
+            ->toArray();
     }
 }
