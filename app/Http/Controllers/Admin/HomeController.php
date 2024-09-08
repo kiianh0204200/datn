@@ -77,11 +77,5 @@ class HomeController extends Controller
             ->groupBy('order_status')
             ->pluck('count', 'order_status')
             ->toArray();
-        return Order::query()
-            ->select('order_status', DB::raw('COUNT(*) as count'))
-            ->whereBetween('created_at', [$start, $end])
-            ->groupBy('order_status')
-            ->pluck('count', 'order_status')
-            ->toArray();
     }
 }
