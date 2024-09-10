@@ -62,7 +62,7 @@ class OrderController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'order_status' => ['required_without:payment_status', 'string', 'max:255'],
+         
             'payment_status' => ['required_without:order_status', 'string', 'max:255'],
         ]);
     
