@@ -16,7 +16,7 @@ class BannerController extends Controller
      */
     public function index(BannerDataTable $bannerDataTable)
     {
-       
+        return $bannerDataTable->render('backend.banner.index');
     }
 
     /**
