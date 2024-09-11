@@ -48,17 +48,17 @@ class AccountController extends Controller
         }
     }
 
-    public function orderCancel($id)
-    {
-        $order = Order::find($id);
-        if ($order) {
-            $order->order_status = 'cancelled';
-            $order->save();
-            return redirect()->back()->with('success', __('frontend.Order has been cancelled successfully.'));
-        } else {
-            return redirect()->back()->with('error', __('frontend.Order not found.'));
-        }
-    }
+    // public function orderCancel($id)
+    // {
+    //     $order = Order::find($id);
+    //     if ($order) {
+    //         $order->order_status = 'cancelled';
+    //         $order->save();
+    //         return redirect()->back()->with('success', __('frontend.Order has been cancelled successfully.'));
+    //     } else {
+    //         return redirect()->back()->with('error', __('frontend.Order not found.'));
+    //     }
+    // }
 
     public function changePassword(Request $request)
     {
@@ -79,4 +79,19 @@ class AccountController extends Controller
             return response()->json(['success' => false, 'message' => 'Mật khẩu cũ không đúng.']);
         }
     }
+// AccountController.php
+public function orderCancel(Request $request, $id)
+{
+    $order = Order::findOrFail($id);
+
+    // Cập nhật trạng thái đơn hàng và lý do hủy
+    $order->update([
+        'order_status' => 'cancelled',
+        'cancellation_reason' => $request->input('cancellation_reason', 'No reason provided'),
+    ]);
+
+    // Redirect về trang đơn hàng với thông báo thành công
+    return redirect()->route('frontend.user.index')->with('status', 'Order has been cancelled successfully.');
+}
+
 }

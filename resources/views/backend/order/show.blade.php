@@ -157,10 +157,19 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="6">
+
+                                        <dl class="dlist">
+                                            <dt>{{ __('voucher') }}:</dt>
+                                            <dd><b class="h5">{{number_format($orderItem->total, 0, '', ',')}}</b></dd>
+                                        </dl>
                                         <article class="float-end">
                                             <dl class="dlist">
                                                 <dt>{{ __('backend.Shipping cost') }}:</dt>
-                                                <dd>0</dd>
+                                                <dd class="h5">0</dd>
+                                            </dl>
+                                            <dl class="dlist">
+                                                <dt>{{ __('voucher') }}:</dt>
+                                                <dd><b class="h5">-{{number_format($order->discount_amount, 0, '', ',')}}</b></dd>
                                             </dl>
                                             <dl class="dlist">
                                                 <dt>{{ __('frontend.Total') }}:</dt>

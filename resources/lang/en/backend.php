@@ -143,4 +143,10 @@ return array(
     'Reset password link sent successfully!' => 'Reset password link sent successfully!',
     'Header title' => 'Header title',
     'Edit New Category' => 'Edit New Category',
+    'Voucher Management'=>'Voucher Management',
+    'voucher List'=>'voucher List',
+    'Voucher Code'=>'Voucher Code',
+    'Edit Voucher'=>'Edit Voucher',
+    'Order Status Distribution'=>'Order Status Distribution',
+    'Revenue'=>'Revenue',
 );

@@ -88,6 +88,7 @@
                                                 <li><a href="#" data-size="">L</a></li>
                                                 <li><a href="#" data-size="">XL</a></li>
                                                 <li><a href="#" data-size="">XXL</a></li>
+                                                <li><a href="#" data-size="">4XL</a></li>
                                             </ul>
                                         </div>
                                         <div class="bt-1 border-color-1 mt-30 mb-30"></div>
@@ -346,117 +347,148 @@
     </main>
 @endsection
 @push('scripts')
-    <script>
-        $(document).ready(function () {
-            // Xử lý sự kiện khi người dùng click vào một phần tử trong danh sách kích thước thì lấy giá theo size
-            $('.size-filter').on('click', 'a', function (e) {
-                let url = "{{ route('product.detail.size.price') }}";
-                e.preventDefault();
+<script>
+    $(document).ready(function () {
+        let stockQuantity = 0; // Biến để lưu trữ số lượng tồn kho
+        let sizeSelected = false; // Biến để theo dõi kích thước đã được chọn
 
-                // Khi người dùng click vào một phần tử trong danh sách kích thước
-                // thì đặt lớp active cho phần tử đó và xoá toàn bộ class đang được ative của các phần tử khác
-                $(this).parent().addClass('active').siblings().removeClass('active');
+        // Xử lý sự kiện khi người dùng click vào một phần tử trong danh sách kích thước
+        $('.size-filter').on('click', 'a', function (e) {
+            let url = "{{ route('product.detail.size.price') }}";
+            e.preventDefault();
 
-                let sizeId = $(this).data('size');
-                let productId = $(this).data('product');
-                $.ajax({
-                    type: 'GET',
-                    url: url, // Đường dẫn tới route xử lý AJAX
-                    data: {size_id: sizeId, product_id: productId},
-                    success: function (response) {
-                        $(this).addClass('active');
-                        // Xử lý kết quả trả về từ server, ví dụ: cập nhật giá sản phẩm
-                        let productPrice = $('.product-price');
-                        let priceSale = $('.text-brand');
-                        let oldPrice = $('.old-price');
-                        let savePrice = $('.save-price');
-                        let salePrice = {{$product->discount ?? 0}};
-                        let stock = $('.in-stock');
-                        let salePriceValue = response.data.price - (response.data.price * salePrice / 100)
-                        // Cập nhật giá sản phẩm theo kích thước
-                        if (salePriceValue < response.data.price) {
-                            // Nếu sale / price < 0 thì giá sản phẩm = price - (price * sale / 100)
-                            let total = response.data.price - (response.data.price * salePrice / 100);
-                            let formattedTotal = total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-                            priceSale.text(formattedTotal);
+            $(this).parent().addClass('active').siblings().removeClass('active');
+            sizeSelected = true; // Đánh dấu kích thước đã được chọn
 
-                            let formattedPrice = response.data.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-                            oldPrice.text(response.data.formattedPrice);
-                            savePrice.text(salePrice + ' % Off');
-                        } else {
-                            // Nếu sale / price > 0 thì giá sản phẩm = price - sale
-                            let total = response.data.price - salePrice;
-                            productPrice.text(response.data.total);
-                        }
-                        stock.text(response.data.in_stock + ' {{ __('frontend.Item In Stock') }}');
+            let sizeId = $(this).data('size');
+            let productId = $(this).data('product');
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: {size_id: sizeId, product_id: productId},
+                success: function (response) {
+                    stockQuantity = response.data.in_stock;
+
+                    let productPrice = $('.product-price');
+                    let priceSale = $('.text-brand');
+                    let oldPrice = $('.old-price');
+                    let savePrice = $('.save-price');
+                    let salePrice = {{$product->discount ?? 0}};
+                    let salePriceValue = response.data.price - (response.data.price * salePrice / 100);
+
+                    if (salePriceValue < response.data.price) {
+                        let total = response.data.price - (response.data.price * salePrice / 100);
+                        let formattedTotal = total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                        priceSale.text(formattedTotal);
+
+                        let formattedPrice = response.data.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                        oldPrice.text(formattedPrice);
+                        savePrice.text(salePrice + ' % Off');
+                    } else {
+                        let total = response.data.price - salePrice;
+                        productPrice.text(total);
                     }
-                });
+                    $('.in-stock').text(stockQuantity + ' {{ __('frontend.Item In Stock') }}');
+                }
             });
-
-            // Xử lý sự kiện khi người dùng click vào một phần tử trong danh sách màu sắc
-            $('.color-filter').on('click', 'a', function (e) {
-                e.preventDefault();
-                $(this).parent().addClass('active').siblings().removeClass('active');
-                let url = "{{ route('product.detail.size') }}";
-                let colorId = $(this).data('color');
-                let productId = $(this).data('product');
-                let sizeList = $('.size-filter');
-                let buttonAddCart = $('#button-add-cart');
-                $.ajax({
-                    type: 'GET',
-                    url: url, // Đường dẫn tới route xử lý AJAX
-                    data: {color_id: colorId, product_id: productId},
-                    success: function (response) {
-                        // Xử lý kết quả trả về từ server, ví dụ: cập nhật danh sách kích thước
-                        sizeList.empty();
-                        $.each(response.data, function (index, size) {
-                            if (size.in_stock === 0) {
-                                buttonAddCart.prop('disabled', true);
-                                buttonAddCart.text('Sản phẩm hết hàng');
-                                return;
-                            }
-
-                            let liClass = index === 0 ? 'active' : ''; // Đặt lớp active cho phần tử đầu tiên
-                            let liElement = `
-                                   <li class="${liClass}">
-                                    <a href="#" data-size="${size.size_id}" data-product="${productId}">${size.size.name}</a>
-                                </li>
-                            `
-                            sizeList.append(liElement); // Thêm phần tử kích thước vào danh sách
-                            buttonAddCart.prop('disabled', false);
-                            buttonAddCart.text('Thêm vào giỏ hàng');
-                        });
-                    }
-                });
-            });
-
-            // Xu ly su kien khi nguoi dung click vao nut add to cart thi them vao gio hang
-            $('.button-add-to-cart').on('click', function (e) {
-                e.preventDefault();
-                let url = "{{ route('cart.add') }}";
-                let productId = {{$product->id}};
-                let sizeId = $('.size-filter li.active a').data('size');
-                let colorId = $('.color-filter li.active a').data('color');
-                let quantity = $('.qty-value').val();
-                $.ajax({
-                    type: 'POST',
-                    url: url, // Đường dẫn tới route xử lý AJAX
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Xác thực token để tránh bị lỗi 419
-                    },
-                    data: {product_id: productId, size: sizeId, color: colorId, quantity: quantity},
-                    success: function (response) {
-                        toastr.success('Thêm sản phẩm vào giỏ hàng thành công');
-                        setTimeout(function () {
-                            window.location.reload();
-                        }, 5000);
-                    },
-                    error: function (response) {
-                        toastr.error('Thêm sản phẩm vào giỏ hàng thất bại');
-                    }
-                });
-            });
-
         });
-    </script>
+
+        // Xử lý sự kiện khi người dùng click vào một phần tử trong danh sách màu sắc
+        $('.color-filter').on('click', 'a', function (e) {
+            e.preventDefault();
+            $(this).parent().addClass('active').siblings().removeClass('active');
+
+            let url = "{{ route('product.detail.size') }}";
+            let colorId = $(this).data('color');
+            let productId = $(this).data('product');
+            let sizeList = $('.size-filter');
+            let buttonAddCart = $('#button-add-cart');
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: {color_id: colorId, product_id: productId},
+                success: function (response) {
+                    sizeList.empty();
+                    $.each(response.data, function (index, size) {
+                        let liClass = index === 0 ? 'active' : '';
+                        let liElement = `
+                            <li class="${liClass}">
+                                <a href="#" data-size="${size.size_id}" data-product="${productId}">${size.size.name}</a>
+                            </li>
+                        `;
+                        sizeList.append(liElement);
+                    });
+
+                    buttonAddCart.prop('disabled', sizeList.find('li').length === 0);
+                    buttonAddCart.text(sizeList.find('li').length === 0 ? 'Sản phẩm hết hàng' : 'Thêm vào giỏ hàng');
+                }
+            });
+        });
+
+        // Kiểm tra số lượng trước khi thêm vào giỏ hàng
+        $('.button-add-to-cart').on('click', function (e) {
+            e.preventDefault();
+
+            let colorSelected = $('.color-filter li.active').length > 0;
+            let quantity = $('.qty-value').val();
+
+            // Kiểm tra nếu chưa chọn màu sắc
+            if (!colorSelected) {
+                toastr.error('Vui lòng chọn màu sắc trước khi thêm vào giỏ hàng');
+                return;
+            }
+
+            // Kiểm tra nếu chưa chọn kích thước
+            if (!sizeSelected) {
+                toastr.error('Vui lòng chọn kích thước trước khi thêm vào giỏ hàng');
+                return;
+            }
+
+            // Kiểm tra số lượng âm
+            if (quantity <= 0) {
+                toastr.error('Số lượng sản phẩm không được nhỏ hơn hoặc bằng 0');
+                return;
+            }
+
+            // Kiểm tra số lượng sản phẩm trong kho
+            if (quantity > stockQuantity) {
+                toastr.error('Số lượng sản phẩm vượt quá số lượng tồn kho');
+                return;
+            }
+
+            let url = "{{ route('cart.add') }}";
+            let productId = {{$product->id}};
+            let sizeId = $('.size-filter li.active a').data('size');
+            let colorId = $('.color-filter li.active a').data('color');
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Xác thực token để tránh bị lỗi 419
+                },
+                data: {product_id: productId, size: sizeId, color: colorId, quantity: quantity},
+                success: function (response) {
+                    toastr.success('Thêm sản phẩm vào giỏ hàng thành công');
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 5000);
+                },
+                error: function (response) {
+                    toastr.error('Thêm sản phẩm vào giỏ hàng thất bại');
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
 @endpush

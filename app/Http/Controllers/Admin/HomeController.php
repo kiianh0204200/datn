@@ -8,17 +8,18 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $earnings = 22.89;
-        $start = $request->query('date_from', Carbon::now()->startOfMonth()->format('Y-m-d'));
-        $end = $request->query('date_to', Carbon::now()->endOfMonth()->format('Y-m-d H:i:s'));
+        $start = $request->query('date_from', Carbon::now()->startOfYear()->format('Y-m-d'));
+        $end = $request->query('date_to', Carbon::now()->endOfYear()->format('Y-m-d H:i:s'));
+
+        // Lấy dữ liệu order status
+        $orderStatusData = $this->getOrderStatusData($start, $end);
 
         $order = Order::query()
             ->whereIn('order_status', ['confirmed', 'completed'])
@@ -29,6 +30,7 @@ class HomeController extends Controller
             ->where('order_status', 'completed')
             ->whereBetween('created_at', [$start, $end])
             ->sum('total');
+
         $product = Product::query()
             ->whereBetween('created_at', [$start, $end])
             ->count();
@@ -41,54 +43,39 @@ class HomeController extends Controller
             ->whereBetween('created_at', [$start, $end])
             ->count();
 
-        return view('backend.index', compact( 'order', 'revenue', 'product', 'total','category','earnings'));
+        // Fetch monthly data for chart
+        $monthlyData = Order::query()
+            ->selectRaw('MONTH(created_at) as month, COUNT(*) as orders, SUM(total) as revenue')
+            ->whereBetween('created_at', [$start, $end])
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->keyBy('month');
+
+        // Prepare data for all 12 months
+        $months = range(1, 12);
+        $orderCounts = [];
+        $revenues = [];
+
+        foreach ($months as $month) {
+            $data = $monthlyData->get($month, ['orders' => 0, 'revenue' => 0]);
+            $orderCounts[] = $data['orders'];
+            $revenues[] = $data['revenue'];
+        }
+
+        return view('backend.index', compact('order', 'revenue', 'product', 'total', 'category', 'earnings', 'months', 'orderCounts', 'revenues', 'orderStatusData'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Get order status data between given dates.
      */
-    public function create()
+    private function getOrderStatusData($start, $end)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return Order::query()
+            ->select('order_status', DB::raw('COUNT(*) as count'))
+            ->whereBetween('created_at', [$start, $end])
+            ->groupBy('order_status')
+            ->pluck('count', 'order_status')
+            ->toArray();
     }
 }

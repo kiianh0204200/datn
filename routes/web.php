@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\BlogController;
@@ -33,6 +34,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -85,6 +87,19 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit')->middleware(['permission:update banner management']);
             Route::patch('/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
             Route::get('/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy')->middleware(['permission:delete banner management']);
+        });
+        Route::group(['prefix' => 'voucher'], function () {
+            // routes/web.php
+
+
+// Route để xử lý việc áp dụng voucher
+            Route::post('/voucher/apply', [VoucherController::class, 'applyVoucher'])->name('voucher.apply');
+            Route::get('/', [VoucherController::class, 'index'])->name('admin.voucher.index')->middleware(['permission:read voucher management']);
+            Route::get('/create', [VoucherController::class, 'create'])->name('admin.voucher.create')->middleware(['permission:create voucher management']);
+            Route::post('/', [VoucherController::class, 'store'])->name('admin.voucher.store');
+            Route::get('/edit/{id}', [VoucherController::class, 'edit'])->name('admin.voucher.edit')->middleware(['permission:update voucher management']);
+            Route::patch('/{id}', [VoucherController::class, 'update'])->name('admin.voucher.update');
+            Route::get('/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy')->middleware(['permission:delete voucher management']);
         });
 
         Route::group(['prefix' => 'brand'], function () {
@@ -178,6 +193,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
 Route::get('/order-track', [HomeController::class, 'orderTrack'])->name('order.track');
 Route::post('product/track/order', [HomeController::class, 'productTrackOrder'])->name('product.track.order');
+// web.php
 
 
 Route::get('/about-us', [AboutController::class, 'index']);
@@ -215,12 +231,12 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
-        Route::get('/order-cancel/{id}', [AccountController::class, 'orderCancel'])->name('frontend.user.order-cancel');
+        Route::post('/order-cancel/{id}', [AccountController::class, 'orderCancel'])->name('frontend.user.order-cancel');
     });
 });
 
 Route::get('/payment-return', [CheckoutController::class, 'paymentReturn'])->name('frontend.checkout.vnpay');
-
+Route::post('/cart/apply-voucher', [CartController::class, 'applyVoucher'])->name('cart.apply-voucher');
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth:web')->name('cart');
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');

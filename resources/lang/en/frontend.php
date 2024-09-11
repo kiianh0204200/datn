@@ -232,4 +232,7 @@ return array (
     'Page Not Found' => 'Page Not Found',
     'The link you clicked may be broken or the page may have been removed.' => 'The link you clicked may be broken or the page may have been removed.',
     'Back To Home Page' => 'Back To Home Page',
+    'Apply Voucher' => 'Apply Voucher',
+    'Apply' => 'Apply',
+    
 );
